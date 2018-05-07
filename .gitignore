@@ -1,46 +1,51 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-Frontend/dist
-Frontend/dist-server
-Frontend/tmp
-Frontend/out-tsc
+frontend/dist
+frontend/dist-server
+frontend/tmp
+frontend/out-tsc
 
 # dependencies
-Frontend/node_modules
+frontend/node_modules
 
 # IDEs and editors
-Frontend/.idea
-Frontend/.project
-Frontend/.classpath
-Frontend/.c9/
-Frontend/*.launch
-Frontend/.settings/
-Frontend/*.sublime-workspace
+frontend/.idea
+frontend/.project
+frontend/.classpath
+frontend/.c9/
+frontend/*.launch
+frontend/.settings/
+frontend/*.sublime-workspace
 
 # IDE - VSCode
-Frontend/.vscode/*
-Frontend/!.vscode/settings.json
-Frontend/!.vscode/tasks.json
-Frontend/!.vscode/launch.json
-Frontend/!.vscode/extensions.json
+frontend/.vscode/*
+frontend/!.vscode/settings.json
+frontend/!.vscode/tasks.json
+frontend/!.vscode/launch.json
+frontend/!.vscode/extensions.json
 
 # misc
-Frontend/.sass-cache
-Frontend/connect.lock
-Frontend/coverage
-Frontend/libpeerconnection.log
-Frontend/npm-debug.log
-Frontend/yarn-error.log
-Frontend/testem.log
-Frontend/typings
+frontend/.sass-cache
+frontend/connect.lock
+frontend/coverage
+frontend/libpeerconnection.log
+frontend/npm-debug.log
+frontend/yarn-error.log
+frontend/testem.log
+frontend/typings
 
 # e2e
-Frontend/e2e/*.js
-Frontend/e2e/*.map
+frontend/e2e/*.js
+frontend/e2e/*.map
 
 # System Files
-Frontend/.DS_Store
-Frontend/Thumbs.db
+frontend/.DS_Store
+frontend/Thumbs.db
 
-Backend/SocialNetwork/__pycache__
+backend/bin
+backend/include
+backend/lib
+backend/local
+
+backend/SocialNetwork/__pycache__

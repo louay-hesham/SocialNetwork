@@ -42,3 +42,5 @@ Frontend/e2e/*.map
 # System Files
 Frontend/.DS_Store
 Frontend/Thumbs.db
+
+Backend/SocialNetwork/__pycache__

@@ -21,5 +21,5 @@ from SocialNetwork.APIs import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^test/', csrf_exempt(test)),
+    url(r'^register/', csrf_exempt(test)),
 ]

@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { CookieService } from 'ngx-cookie-service';
+import { ApiService } from './services/api.service';
+import { CommonService } from './services/common.service';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app.component';
 
 
 @NgModule({
@@ -12,7 +15,11 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    CookieService,
+    ApiService,
+    CommonService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

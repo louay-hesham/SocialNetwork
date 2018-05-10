@@ -9,3 +9,78 @@
     </form>
     <div class="col-md-1"></div>
 </nav>
+
+<div>
+  <h1>Welcome to Trainer Pokédex social network!</h1>
+  <h3>Don't have an account yet? Register now</h3>
+
+  <form method="post">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-highlight">
+        <tr>
+          <td>
+            <input  type="text" class="form-control" name="fname"
+                    required [(ngModel)]="user.firstName" #fname="ngModel"  placeholder="First Name">
+            <div [hidden]="fname.valid || fname.pristine"
+                 class="alert alert-danger">
+              First name is required
+            </div>      
+          </td>
+          <td>
+            <input  type="text" class="form-control" name="lname"
+                    required [(ngModel)]="user.lastName" #lname="ngModel"  placeholder="Last Name">
+            <div [hidden]="lname.valid || lname.pristine"
+                 class="alert alert-danger">
+              Last name is required
+            </div>      
+          </td>
+          <td>
+            <input  type="text" class="form-control" name="nname"
+                    [(ngModel)]="user.nickname" #nname="ngModel"  placeholder="Nickname">
+          </td>
+          <td>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Gender <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a role="menuitem" href="#">Male</a></li>
+                <li><a role="menuitem" href="#">Female</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input  type="email" class="{{emailClass()}}" name="email" email required 
+                    [(ngModel)]="user.email" #email="ngModel" placeholder="Email">
+            <div [hidden]="validateEmail()" class="alert alert-danger">
+              Please enter a valid email
+            </div>
+          </td>
+          <td>
+            <input  type="password" class="form-control" name="password" required 
+                    [(ngModel)]="user.password" #pwd="ngModel" placeholder="Password">
+            <div [hidden]="pwd.valid || pwd.pristine"
+                 class="alert alert-danger">
+              password is required
+            </div>
+          </td>
+          <td>
+            <input  type="password" class="{{repPwdClass()}}" name="password2" required 
+                    [(ngModel)]="repeatedPassword" #pwd2="ngModel" placeholder="Repeat Password">
+            <div [hidden]="checkPassword()"
+                 class="alert alert-danger">
+              Passwords do not match
+            </div>      
+          </td>
+          <td>
+            <input  type="text" class="form-control" name="phone"
+                    [(ngModel)]="user.phone" #phone="ngModel" placeholder="Phone Number">      
+          </td>
+        </tr>
+      </table>
+    </div>
+    <button type="submit" class="btn btn-success" (click)="register()">Register</button>
+  </form>
+</div>

@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark row">
     <div class="col-md-6"></div>
-    <form class="form-inline col-md-10" method="post" style="margin: 10px">
-      <input  type="email" class="form-control" style="margin: 10px" 
+    <form class="form-inline col-md-10 margin-padding" method="post">
+      <input  type="email" class="form-control margin-padding"
               name="email" required [(ngModel)]="loginEmail" placeholder="Email">
-      <input  type="password" class="form-control" style="margin: 10px" 
+      <input  type="password" class="form-control margin-padding"
               name="password" required [(ngModel)]="loginPassword" placeholder="Password">
-      <button type="submit" class="btn btn-success col-md-1" (click)="login()">Login</button>
+      <button type="submit" class="btn btn-success col-md-1 margin-padding" (click)="login()">Login</button>
     </form>
     <div class="col-md-1"></div>
 </nav>
@@ -16,7 +16,7 @@
 
   <form method="post">
     <div class="table-responsive">
-      <table class="table table-bordered table-striped table-highlight">
+      <table class="table">
         <tr>
           <td>
             <input  type="text" class="form-control" name="fname"

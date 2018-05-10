@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   private login() {
     console.log(this.loginEmail);
     console.log(this.loginPassword);
+    // to be modified
   }
 
 }

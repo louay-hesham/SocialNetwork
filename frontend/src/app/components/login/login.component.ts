@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IMyDpOptions } from 'mydatepicker';
 import { User } from '../../classes/user'
+import { CommonService } from '../../services/common.service'
+import { ApiService } from '../../services/api.service'
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,7 @@ export class LoginComponent implements OnInit {
   private emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   private repeatedPassword: string;
 
-  constructor() { }
+  constructor(private common: CommonService, private api: ApiService) { }
 
   ngOnInit() { }
 
@@ -32,8 +34,33 @@ export class LoginComponent implements OnInit {
   }
 
   private register() {
-    this.user.birthdate = this.model.jsdate;
-    console.log(this.user.toJSON());
+    if (!this.validateEmail() || this.user.email == undefined) {
+      this.common.makeErrorMessage('Invalid data', 'Please enter a valid email');
+    } else if (!this.checkPassword()) {
+      this.common.makeErrorMessage('Invalid data', 'Passwords do not match');
+    } else if (this.user.firstName == undefined) {
+      this.common.makeErrorMessage('Incomplete data', 'Please enter your first name');
+    } else if (this.user.lastName == undefined) {
+      this.common.makeErrorMessage('Incomplete data', 'Please enter your last name');
+    } else if (this.user.password == undefined) {
+      this.common.makeErrorMessage('Incomplete data', 'Please enter a password');
+    } else if (this.user.gender == undefined) {
+      this.common.makeErrorMessage('Incomplete data', 'Please select your gender');
+    } else if (this.model == undefined) {
+      this.common.makeErrorMessage('Incomplete data', 'Please choose date of birth');
+    } else {
+      this.user.birthdate = this.model.jsdate;
+      this.api.registerUser(this.user).subscribe(
+        response => {
+          if (response['status'] == 'success') {
+            this.common.makeSuccessMessage('Registeration successfull');
+            console.log(response['data'])
+          } else {
+            this.common.makeErrorMessage('Error while registeration', response['error_message']);
+          }
+        }
+      )
+    }
   }
 
   private validateEmail(): boolean {

@@ -38,7 +38,6 @@ export class User {
 
   public toJSON_noEcryption(): any {
     return {
-      return {
       'firstName': this.firstName,
       'lastName': this.lastName,
       'nickname': this.nickname,
@@ -51,7 +50,6 @@ export class User {
       'hometown': this.hometown,
       'maritalStatus': this.maritalStatus,
       'aboutMe': this.aboutMe
-    }
     }
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IMyDpOptions } from 'mydatepicker';
+import * as crypto from 'crypto-js';
 import { User } from '../../classes/user'
 import { CommonService } from '../../services/common.service'
 import { ApiService } from '../../services/api.service'
@@ -28,9 +29,17 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   private login() {
-    console.log(this.loginEmail);
-    console.log(this.loginPassword);
-    // to be modified
+    let hashedPwd = crypto.SHA256(this.loginPassword);
+    this.api.login(this.loginEmail, hashedPwd).subscribe(
+      response => {
+        if (response['status'] == 'success') {
+          this.common.makeSuccessMessage('Login successful')
+          this.common.parseUser(response['data'])
+        } else {
+          this.common.makeErrorMessage('Could not login', response['error_message'])
+        }
+      }
+    )
   }
 
   private register() {

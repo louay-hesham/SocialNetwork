@@ -15,17 +15,17 @@ export class ApiService {
     return this.http.post(this.baseUrl + 'register/', user)
   }
 
-  public login(username: string, password: string): Observable<any> {
+  public login(email: string, password: string): Observable<any> {
     let data = {
-      'username': username,
+      'email': email,
       'password': password
     }
     return this.http.post(this.baseUrl + 'login/', data)  
   }
 
-  public hashedLogin(username: string, password: string): Observable<any> {
+  public hashedLogin(email: string, password: string): Observable<any> {
     let data = {
-      'username': username,
+      'email': email,
       'password': password
     }
     return this.http.post(this.baseUrl + 'hashedlogin/', data)  

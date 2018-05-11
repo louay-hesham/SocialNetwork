@@ -40,7 +40,18 @@ export class CommonService {
     userData = JSON.parse(userData);
     user.email = userData[0]['pk'];
     user.password = userData[0]['fields']['password'];
+    user.firstName = userData[0]['fields']['firstname'];
+    user.lastName = userData[0]['fields']['lastname'];
+    user.nickname = userData[0]['fields']['nickname'];
+    user.phone = userData[0]['fields']['phone'];
+    user.gender = userData[0]['fields']['gender'];
+    user.birthdate = userData[0]['fields']['birthdate'];
+    user.profilePic = userData[0]['fields']['profilepic'];
+    user.hometown = userData[0]['fields']['hometown'];
+    user.maritalStatus = userData[0]['fields']['maritalStatus'];
+    user.aboutMe = userData[0]['fields']['aboutme'];
     this.user = user;
+    console.log(this.user.toJSON_noEcryption());
     this.saveUserCookie();
   }
 }

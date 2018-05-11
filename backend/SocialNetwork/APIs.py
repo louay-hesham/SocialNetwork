@@ -51,7 +51,6 @@ def hashed_login(request):
 
 def update_profile(request):
   data = extract_data(request)
-  print(data)
   original_email = data['originalEmail']
   original_hashed_password = decode_password(data['originalPassword'])
   try:

@@ -33,6 +33,7 @@ def get_user_data(email, password):
     user = User.objects.get(email = email, password = password)
     user_data = serializers.serialize('json', [user])
     response = make_success_response(user_data)
-  except:
+  except Exception as e :
+    print(e)
     response = make_error_response('Incorrect email or password')
   return response

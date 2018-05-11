@@ -17,7 +17,7 @@ class User(models.Model):
     phone = models.CharField(db_column='Phone', max_length=15, blank=True, null=True)  # Field name made lowercase.
     gender = models.IntegerField(db_column='Gender')  # Field name made lowercase.
     birthdate = models.DateTimeField(db_column='Birthdate')  # Field name made lowercase.
-    profilepic = models.TextField(db_column='ProfilePic', blank=True, null=True)  # Field name made lowercase.
+    profilepic = models.ImageField(upload_to="ProfilePics/", db_column='ProfilePic', blank=True, null=True)  # Field name made lowercase.
     hometown = models.CharField(db_column='Hometown', max_length=50, blank=True, null=True)  # Field name made lowercase.
     maritalstatus = models.CharField(db_column='MaritalStatus', max_length=50, blank=True, null=True)  # Field name made lowercase.
     aboutme = models.TextField(db_column='AboutMe', blank=True, null=True)  # Field name made lowercase.

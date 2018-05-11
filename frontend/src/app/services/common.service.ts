@@ -52,5 +52,6 @@ export class CommonService {
     user.aboutMe = userData[0]['fields']['aboutme'];
     this.user = user;
     this.saveUserCookie();
+    console.log(this.user.toJSON_noEcryption())
   }
 }

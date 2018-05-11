@@ -49,3 +49,5 @@ backend/lib
 backend/local
 
 backend/SocialNetwork/__pycache__
+backend/__pycache__/
+*.pyc

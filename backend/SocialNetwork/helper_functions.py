@@ -1,5 +1,5 @@
 import json
-from SocialNetwork.models import *
+from backend.models import *
 from django.core import serializers
 
 def decode_password(password):

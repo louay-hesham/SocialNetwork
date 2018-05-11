@@ -35,10 +35,4 @@ export class AppComponent {
   private loggedIn(): boolean {
     return this.common.user != undefined;
   }
-
-  private logout() {
-    this.cookie.delete('email');
-    this.cookie.delete('password');
-    window.location.reload();
-  }
 }

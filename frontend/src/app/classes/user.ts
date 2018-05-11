@@ -52,4 +52,12 @@ export class User {
       'aboutMe': this.aboutMe
     }
   }
+
+  public getDisplayName(): string {
+    if (this.nickname == undefined || this.nickname == '') {
+      return this.firstName + ' ' + this.lastName;
+    } else {
+      return this.nickname;
+    }
+  }
 }

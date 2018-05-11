@@ -51,7 +51,6 @@ export class CommonService {
     user.maritalStatus = userData[0]['fields']['maritalStatus'];
     user.aboutMe = userData[0]['fields']['aboutme'];
     this.user = user;
-    console.log(this.user.toJSON_noEcryption());
     this.saveUserCookie();
   }
 }

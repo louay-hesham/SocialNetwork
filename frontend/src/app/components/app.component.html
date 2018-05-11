@@ -2,6 +2,7 @@
   <div class="jumbotron bg">
     <div class="container translucent">
       <app-login *ngIf="!loggedIn()"></app-login>
+      <app-home *ngIf="loggedIn()"></app-home>
     </div>
   </div>
 </main>

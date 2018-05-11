@@ -38,8 +38,20 @@ export class User {
 
   public toJSON_noEcryption(): any {
     return {
+      return {
+      'firstName': this.firstName,
+      'lastName': this.lastName,
+      'nickname': this.nickname,
       'password': this.password,
+      'phone': this.phone,
       'email': this.email,
+      'gender': this.gender,
+      'birthdate': this.birthdate,
+      'profilePic': this.profilePic,
+      'hometown': this.hometown,
+      'maritalStatus': this.maritalStatus,
+      'aboutMe': this.aboutMe
+    }
     }
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IMyDpOptions } from 'mydatepicker';
 import { User } from '../../classes/user'
 
 @Component({
@@ -7,6 +8,11 @@ import { User } from '../../classes/user'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  private myDatePickerOptions: IMyDpOptions = {
+    dateFormat: 'dd/mm/yyyy',
+  };
+  private model: any;
 
   private loginEmail: string;
   private loginPassword: string;
@@ -26,7 +32,8 @@ export class LoginComponent implements OnInit {
   }
 
   private register() {
-    console.log(this.user.toJSON())
+    this.user.birthdate = this.model.jsdate;
+    console.log(this.user.toJSON());
   }
 
   private validateEmail(): boolean {
@@ -55,4 +62,24 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  private genderText(): string {
+    if (this.user.gender == undefined) return 'Gender';
+    else if (this.user.gender) return 'Male';
+    else return 'Female';
+  }
+
+  private chooseGender(g: boolean) {
+    this.user.gender = g;
+  }
+
+  private maritalText(): string {
+    if (this.user.maritalStatus == undefined) return 'Marital Status';
+    else if (this.user.maritalStatus == 0) return 'Single';
+    else if (this.user.maritalStatus == 1) return 'Engaged';
+    else if (this.user.maritalStatus == 2) return 'Married';
+  }
+
+  private chooseMarital(m: number) {
+    this.user.maritalStatus = m;
+  }
 }

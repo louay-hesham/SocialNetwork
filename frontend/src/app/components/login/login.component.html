@@ -39,15 +39,8 @@
                     [(ngModel)]="user.nickname" #nname="ngModel"  placeholder="Nickname">
           </td>
           <td>
-            <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                Gender <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a role="menuitem" href="#">Male</a></li>
-                <li><a role="menuitem" href="#">Female</a></li>
-              </ul>
-            </div>
+            <input  type="text" class="form-control" name="hometown"
+                    [(ngModel)]="user.hometown" #hometown="ngModel" placeholder="Hometown">      
           </td>
         </tr>
         <tr>
@@ -79,8 +72,40 @@
                     [(ngModel)]="user.phone" #phone="ngModel" placeholder="Phone Number">      
           </td>
         </tr>
+        <tr>
+          <td align="center">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="genderLabel" 
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{genderText()}}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="genderLabel">
+                <button class="dropdown-item" type="button" (click)="chooseGender(true)">Male</button>
+                <button class="dropdown-item" type="button" (click)="chooseGender(false)">Female</button>
+              </div>
+            </div>
+          </td>
+          <td align="center">
+            <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model"></my-date-picker>
+          </td>
+          <td align="center">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="maritalLabel" 
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{maritalText()}}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="maritalLabel">
+                <button class="dropdown-item" type="button" (click)="chooseMarital(0)">Single</button>
+                <button class="dropdown-item" type="button" (click)="chooseMarital(1)">Engaged</button>
+                <button class="dropdown-item" type="button" (click)="chooseMarital(2)">Married</button>
+              </div>
+            </div>
+          </td>
+          <td align="center">
+            <button type="submit" class="btn btn-success" (click)="register()">Register</button>        
+          </td>
+        </tr>
       </table>
     </div>
-    <button type="submit" class="btn btn-success" (click)="register()">Register</button>
   </form>
 </div>

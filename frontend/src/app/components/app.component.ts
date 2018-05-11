@@ -14,22 +14,22 @@ export class AppComponent {
   constructor(private common: CommonService, private cookie: CookieService, private api: ApiService) { }
 
   ngOnInit() {
-    // if (this.cookie.check('username') && this.cookie.check('password')) {
-    //   let username = this.cookie.get('username');
-    //   let password = this.cookie.get('password')
-    //   this.api.hashedLogin(username, password).subscribe(
-    //     response => {
-    //       if (response['status'] == 'success') {
-    //         this.common.parseUser(response['data'])
-    //       } else {
-    //         this.common.makeErrorMessage('Could not login', response['error_message'])
-    //       }
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     }
-    //   )
-    // }
+    if (this.cookie.check('email') && this.cookie.check('password')) {
+      let email = this.cookie.get('email');
+      let password = this.cookie.get('password')
+      this.api.hashedLogin(email, password).subscribe(
+        response => {
+          if (response['status'] == 'success') {
+            this.common.parseUser(response['data'])
+          } else {
+            this.common.makeErrorMessage('Could not login', response['error_message'])
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
   }
 
   private loggedIn(): boolean {

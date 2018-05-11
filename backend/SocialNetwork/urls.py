@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^register/', csrf_exempt(register)),
     url(r'^login/', csrf_exempt(login)),
+    url(r'^hashedlogin/', csrf_exempt(hashed_login)),
 ]

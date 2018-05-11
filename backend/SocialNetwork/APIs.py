@@ -31,7 +31,7 @@ def register(request):
     if 'aboutMe' in data:
       user.aboutme = data['aboutMe']
     user.save()
-    response = make_success_response(data)
+    response = get_user_data(user.email, user.password)
   return HttpResponse(json.dumps(response))
 
 

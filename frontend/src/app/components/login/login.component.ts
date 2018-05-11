@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
         response => {
           if (response['status'] == 'success') {
             this.common.makeSuccessMessage('Registeration successfull');
-            console.log(response['data'])
+            this.common.parseUser(response['data'])
           } else {
             this.common.makeErrorMessage('Error while registeration', response['error_message']);
           }

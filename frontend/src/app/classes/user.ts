@@ -4,16 +4,16 @@ export class User {
 
   public firstName: string;
   public lastName: string;
-  public nickname: string;
+  public nickname: string = '';
   public password: string;
-  public phone: string;
+  public phone: string = '';
   public email: string;
   public gender: boolean;
   public birthdate: Date;
   public profilePic: any;
-  public hometown: string;
-  public maritalStatus: number;
-  public aboutMe: string;
+  public hometown: string = '';
+  public maritalStatus: number = -1;
+  public aboutMe: string = '';
 
 
   constructor () { }

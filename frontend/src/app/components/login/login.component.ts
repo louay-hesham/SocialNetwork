@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit {
   }
 
   private maritalText(): string {
-    if (this.user.maritalStatus == undefined) return 'Marital Status';
+    if (this.user.maritalStatus == -1) return 'Marital Status';
     else if (this.user.maritalStatus == 0) return 'Single';
     else if (this.user.maritalStatus == 1) return 'Engaged';
     else if (this.user.maritalStatus == 2) return 'Married';

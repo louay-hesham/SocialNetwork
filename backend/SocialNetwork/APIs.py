@@ -18,13 +18,18 @@ def register(request):
     user.gender = data['gender']
     user.birthdate = data['birthdate']
 
-    # user.nickname = data['nickname']
-    # user.phone = data['phone']
-    # user.profilepic = data['profilePic']
-    # user.hometown = data['hometown']
-    # user.maritalstatus = data['maritalStatus']
-    # user.aboutme = data['aboutMe']
+    if 'nickname' in data:
+      user.nickname = data['nickname']
+    if 'phone' in data:
+      user.phone = data['phone']
+    if 'profilePic' in data:
+      user.profilepic = data['profilePic']
+    if 'hometown' in data:
+      user.hometown = data['hometown']
+    if 'maritalStatus' in data:
+      user.maritalstatus = data['maritalStatus']
+    if 'aboutMe' in data:
+      user.aboutme = data['aboutMe']
     user.save()
-    print('of a7')
     response = make_success_response(data)
   return HttpResponse(json.dumps(response))

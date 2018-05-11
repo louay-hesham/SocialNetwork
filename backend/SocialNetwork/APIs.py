@@ -33,3 +33,18 @@ def register(request):
     user.save()
     response = make_success_response(data)
   return HttpResponse(json.dumps(response))
+
+
+def login(request):
+  data = extract_data(request)
+  email = data['email']
+  hashed_password = decode_password(data['password'])
+  response = get_user_data(email, hashed_password)
+  return HttpResponse(json.dumps(response))
+
+def hashed_login(request):
+  data = extract_data(request)
+  email = data['email']
+  hashed_password = data['password']
+  response = get_user_data(email, hashed_password)
+  return HttpResponse(json.dumps(response))

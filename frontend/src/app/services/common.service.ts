@@ -48,7 +48,7 @@ export class CommonService {
     user.birthdate = userData[0]['fields']['birthdate'];
     user.profilePic = userData[0]['fields']['profilepic'];
     user.hometown = userData[0]['fields']['hometown'];
-    user.maritalStatus = userData[0]['fields']['maritalStatus'];
+    user.maritalStatus = userData[0]['fields']['maritalstatus'];
     user.aboutMe = userData[0]['fields']['aboutme'];
     this.user = user;
     this.saveUserCookie();

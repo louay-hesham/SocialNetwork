@@ -13,13 +13,15 @@ import { CommonService } from './services/common.service';
 import { AppComponent } from './components/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { EditProfileComponent } from './components/home/edit-profile/edit-profile.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

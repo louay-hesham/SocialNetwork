@@ -48,3 +48,38 @@ def hashed_login(request):
   hashed_password = data['password']
   response = get_user_data(email, hashed_password)
   return HttpResponse(json.dumps(response))
+
+def update_profile(request):
+  data = extract_data(request)
+  print(data)
+  original_email = data['originalEmail']
+  original_hashed_password = decode_password(data['originalPassword'])
+  try:
+    user = User.objects.get(email = original_email, password = original_hashed_password)
+    updated_user_data = data['updatedData']
+
+    if 'email' in updated_user_data:
+      user.email = updated_user_data['email']
+    if 'firstName' in updated_user_data:
+      user.firstname = updated_user_data['firstName']
+    if 'lastName' in updated_user_data:
+      user.lastname = updated_user_data['lastName']
+    if 'password' in updated_user_data:
+      user.password = decode_password(updated_user_data['password'])
+    if 'nickname' in updated_user_data:
+      user.nickname = updated_user_data['nickname']
+    if 'phone' in updated_user_data:
+      user.phone = updated_user_data['phone']
+    if 'profilePic' in updated_user_data:
+      user.profilepic = updated_user_data['profilePic']
+    if 'hometown' in updated_user_data:
+      user.hometown = updated_user_data['hometown']
+    if 'maritalStatus' in updated_user_data:
+      user.maritalstatus = updated_user_data['maritalStatus']
+    if 'aboutMe' in updated_user_data:
+      user.aboutme = updated_user_data['aboutMe']
+    user.save()
+    response = get_user_data(user.email, user.password)
+  except:
+    response = make_error_response('Incorrect password!')
+  return HttpResponse(json.dumps(response))  

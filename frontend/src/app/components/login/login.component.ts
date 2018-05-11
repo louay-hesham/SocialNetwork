@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IMyDpOptions } from 'mydatepicker';
-import * as crypto from 'crypto-js';
 import { User } from '../../classes/user'
 import { CommonService } from '../../services/common.service'
 import { ApiService } from '../../services/api.service'
@@ -29,8 +28,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   private login() {
-    let hashedPwd = crypto.SHA256(this.loginPassword);
-    this.api.login(this.loginEmail, hashedPwd).subscribe(
+    this.api.login(this.loginEmail, this.loginPassword).subscribe(
       response => {
         if (response['status'] == 'success') {
           this.common.makeSuccessMessage('Login successful')
@@ -59,7 +57,7 @@ export class LoginComponent implements OnInit {
       this.common.makeErrorMessage('Incomplete data', 'Please choose date of birth');
     } else {
       this.user.birthdate = this.model.jsdate;
-      this.api.registerUser(this.user).subscribe(
+      this.api.registerUser(this.user.toJSON()).subscribe(
         response => {
           if (response['status'] == 'success') {
             this.common.makeSuccessMessage('Registeration successfull');

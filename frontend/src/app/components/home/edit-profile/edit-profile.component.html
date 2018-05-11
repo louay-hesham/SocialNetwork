@@ -77,7 +77,10 @@
           </td>
         </tr>
       </table>
-      <p>About Me Here</p>
+      <div class="form-group">
+        <label for="about">About me:</label>
+        <textarea class="form-control" rows="5" id="about" name="about" [(ngModel)]="modifiedUser.aboutMe"></textarea>
+      </div>
     </div>
   </form>
 </div>

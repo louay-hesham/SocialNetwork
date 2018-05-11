@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import * as crypto from 'crypto-js';
 import { User } from '../classes/user'
 import { Observable } from 'rxjs';
 
@@ -16,9 +17,10 @@ export class ApiService {
   }
 
   public login(email: string, password: string): Observable<any> {
+    let hashedPwd = crypto.SHA256(password);
     let data = {
       'email': email,
-      'password': password
+      'password': hashedPwd
     }
     return this.http.post(this.baseUrl + 'login/', data)  
   }
@@ -29,5 +31,15 @@ export class ApiService {
       'password': password
     }
     return this.http.post(this.baseUrl + 'hashedlogin/', data)  
+  }
+
+  public updateProfile(originalEmail: string, originalPassword: string, updatedUserInfo: User): Observable<any> {
+    let hashedPwd = crypto.SHA256(originalPassword);
+    let data = {
+      'originalEmail': originalEmail,
+      'originalPassword': hashedPwd,
+      'updatedData': updatedUserInfo
+    }
+    return this.http.post(this.baseUrl + 'updateprofile/', data)  
   }
 }

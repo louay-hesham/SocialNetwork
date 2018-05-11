@@ -59,7 +59,23 @@ export class EditProfileComponent implements OnInit {
   }
 
   private save() {
-    console.log(this.modifiedUser.toJSON_noEcryption())
+    if (this.oldPassword == undefined || this.oldPassword == '') {
+      this.common.makeErrorMessage('Failed to update user info', 'Please enter your password to confirm your identity.');
+    } if (this.modifiedUser.password != undefined && this.modifiedUser.password != '' && !this.checkPassword()) {
+      this.common.makeErrorMessage('Failed to update user info', 'New passwords don\'t match.');
+    } else {
+      this.api.updateProfile(this.common.user.email, this.oldPassword, this.modifiedUser.toJSON()).subscribe(
+        response => {
+          if (response['status'] == 'success') {
+            this.common.makeSuccessMessage('Successfully updated info');
+            this.common.parseUser(response['data'])
+          } else {
+            this.common.makeErrorMessage('Failed to update user info', response['error_message']);
+          }
+        }
+      )
+    }
+
   }
 
 }

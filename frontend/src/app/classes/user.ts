@@ -19,12 +19,10 @@ export class User {
   constructor () { }
   
   public toJSON(): any {
-    let hashedPwd = crypto.SHA256(this.password)
-    return {
+    let data = {
       'firstName': this.firstName,
       'lastName': this.lastName,
       'nickname': this.nickname,
-      'password': hashedPwd,
       'phone': this.phone,
       'email': this.email,
       'gender': this.gender,
@@ -34,6 +32,12 @@ export class User {
       'maritalStatus': this.maritalStatus,
       'aboutMe': this.aboutMe
     }
+    if (this.password != undefined && this.password != '') {
+      let hashedPwd = crypto.SHA256(this.password);
+      data['password']= hashedPwd;
+    }
+    
+    return data;
   }
 
   public toJSON_noEcryption(): any {

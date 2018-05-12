@@ -56,4 +56,11 @@ export class ApiService {
     }
     return this.http.post(this.baseUrl + 'getfriendrequests/', data);
   }
+
+  public getFriends(email: string): Observable<any>  {
+    let data = {
+      'email': email
+    }
+    return this.http.post(this.baseUrl + 'getfriends/', data);
+  }
 }

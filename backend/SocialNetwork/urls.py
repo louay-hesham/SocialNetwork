@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^updateprofile/', csrf_exempt(update_profile)),
     url(r'^getrequestscount/', csrf_exempt(count_received_requests)),
     url(r'^getfriendrequests/', csrf_exempt(get_friend_requests)),
+    url(r'^getfriends/', csrf_exempt(get_friends)),
 ]

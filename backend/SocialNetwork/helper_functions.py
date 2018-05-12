@@ -75,3 +75,8 @@ def decode_base64(data):
 
 def jsonify_requests(requests): 
   return [jsonify_user(request.user1) for request in requests]
+
+def jsonify_friends(friends1, friends2):
+  friends_data = [jsonify_user(friendship.user2) for friendship in friends1]
+  friends_data += [jsonify_user(friendship.user1) for friendship in friends2]
+  return friends_data

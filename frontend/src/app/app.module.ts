@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { EditProfileComponent } from './components/home/edit-profile/edit-profile.component';
 import { RequestsComponent } from './components/home/requests/requests.component';
+import { FriendsComponent } from './components/home/friends/friends.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { RequestsComponent } from './components/home/requests/requests.component
     LoginComponent,
     HomeComponent,
     EditProfileComponent,
-    RequestsComponent
+    RequestsComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,

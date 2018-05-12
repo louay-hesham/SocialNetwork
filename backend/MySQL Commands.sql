@@ -18,3 +18,12 @@ CREATE TABLE User (
   AboutMe mediumtext
 );
 
+CREATE TABLE Friendship (
+  User1 varchar(50) NOT NULL,
+  User2 varchar(50) NOT NULL,
+  Status boolean NOT NULL,
+  PRIMARY KEY (User1, User2),
+  FOREIGN KEY (User1) REFERENCES User(Email),
+  FOREIGN KEY (User2) REFERENCES User(Email)
+)
+

@@ -42,4 +42,11 @@ export class ApiService {
     }
     return this.http.post(this.baseUrl + 'updateprofile/', data)  
   }
+
+  public getRequestsCount(email: string): Observable<any> {
+    let data = {
+      'email': email
+    } 
+    return this.http.post(this.baseUrl + 'getrequestscount/', data)  
+  }
 }

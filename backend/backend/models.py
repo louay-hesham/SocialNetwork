@@ -7,6 +7,18 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
+
+class Friendship(models.Model):
+    user1 = models.ForeignKey('User', models.DO_NOTHING, db_column='User1', primary_key=True)  # Field name made lowercase.
+    user2 = models.ForeignKey('User', models.DO_NOTHING, db_column='User2', related_name='%(class)s_requests_created')  # Field name made lowercase.
+    status = models.IntegerField(db_column='Status')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Friendship'
+        unique_together = (('user1', 'user2'),)
+
+
 class User(models.Model):
     email = models.CharField(db_column='Email', primary_key=True, max_length=50)  # Field name made lowercase.
     firstname = models.CharField(db_column='FirstName', max_length=50)  # Field name made lowercase.

@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^login/', csrf_exempt(login)),
     url(r'^hashedlogin/', csrf_exempt(hashed_login)),
     url(r'^updateprofile/', csrf_exempt(update_profile)),
+    url(r'^getrequestscount/', csrf_exempt(count_received_requests)),
 ]

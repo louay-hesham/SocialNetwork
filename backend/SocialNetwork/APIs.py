@@ -82,4 +82,12 @@ def update_profile(request):
   except Exception as e :
     print(e)
     response = make_error_response('Incorrect password!')
-  return HttpResponse(json.dumps(response))  
+  return HttpResponse(json.dumps(response))
+
+def count_received_requests(request):
+  data = extract_data(request)
+  email = data['email']
+  user = User.objects.get(email = email)
+  requests_count = Friendship.objects.filter(user2 = user, status = 0).count()
+  response = make_success_response(requests_count)
+  return HttpResponse(json.dumps(response))

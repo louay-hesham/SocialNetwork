@@ -58,6 +58,14 @@ export class EditProfileComponent implements OnInit {
     this.modifiedUser.maritalStatus = m;
   }
 
+  onFileChanged(event: any) {
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = e => { 
+      this.modifiedUser.profilePic = e.target.result.substring(23);
+    }
+  }
+
   private save() {
     if (this.oldPassword == undefined || this.oldPassword == '') {
       this.common.makeErrorMessage('Failed to update user info', 'Please enter your password to confirm your identity.');
@@ -75,7 +83,5 @@ export class EditProfileComponent implements OnInit {
         }
       )
     }
-
   }
-
 }

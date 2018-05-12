@@ -34,3 +34,7 @@ body {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
+.table tbody > tr > td.vert-aligned {
+  vertical-align: middle;  
+}

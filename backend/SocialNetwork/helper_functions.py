@@ -57,5 +57,14 @@ def get_user_data(email, password):
   return response
 
 
-# def set_profilepic(self, pp):
-#         self._profilepic = base64.encodestring(pp)
+def decode_base64(data):
+ if '=' in data:
+  data = data[:data.index('=')]
+ missing_padding = len(data) % 4
+ if missing_padding == 1:
+  data += 'A=='
+ elif missing_padding == 2:
+  data += '=='
+ elif missing_padding == 3:
+  data += '='
+ return base64.b64decode(data)

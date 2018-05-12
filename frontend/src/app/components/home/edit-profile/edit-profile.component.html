@@ -5,32 +5,25 @@
     <div class="table-responsive">
       <table class="table">
         <tr>
-          <td align="center">
+          <td class="vert-aligned" align="center">
             <input  type="text" class="form-control" name="fname" [(ngModel)]="modifiedUser.firstName" 
                     #fname="ngModel"  placeholder="First Name">
           </td>
-          <td align="center">
+          <td class="vert-aligned" align="center">
             <input  type="text" class="form-control" name="lname" [(ngModel)]="modifiedUser.lastName" 
                     #lname="ngModel"  placeholder="Last Name">     
           </td>
-          <td align="center">
+          <td class="vert-aligned" align="center">
             <input  type="text" class="form-control" name="nname"
                     [(ngModel)]="modifiedUser.nickname" #nname="ngModel"  placeholder="Nickname">
           </td>
-          <td align="center">
+          <td class="vert-aligned" align="center">
             <input  type="text" class="form-control" name="hometown"
                     [(ngModel)]="modifiedUser.hometown" #hometown="ngModel" placeholder="Hometown">      
           </td>
         </tr>
         <tr>
-          <td align="center">
-            <input  type="email" class="{{emailClass()}}" name="email" email
-                    [(ngModel)]="modifiedUser.email" #email="ngModel" placeholder="Email">
-            <div [hidden]="validateEmail()" class="alert alert-danger">
-              Please enter a valid email
-            </div>
-          </td>
-          <td align="center">
+          <td class="vert-aligned" align="center">
             <div class="dropdown">
               <button class="btn btn-primary dropdown-toggle" type="button" id="maritalLabel" 
                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,16 +36,21 @@
               </div>
             </div>
           </td>
-          <td align="center">
-            <p>Profile Pic here!</p>
+          <td class="vert-aligned" align="center">
+            <img [src]="modifiedUser.getProfilePic()" class="img-thumbnail" style="max-height: 60px; max-width: 60px;"/>
+            <input  type="file" id="profilePic" #fileInput (change)="onFileChanged($event)" name="profilePic">
+            <!-- <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear Photo</button> -->
           </td>
-          <td align="center">
+          <td class="vert-aligned" align="center">
             <input  type="text" class="form-control" name="phone"
                     [(ngModel)]="modifiedUser.phone" #phone="ngModel" placeholder="Phone Number">      
           </td>
+          <td rowspan=2 class="vert-aligned" align="center">
+            <button type="submit" class="btn btn-success" (click)="save()">Save</button>        
+          </td>
         </tr>
         <tr>
-          <td align="center">
+          <td class="vert-aligned" align="center">
             <input  type="password" class="form-control" name="oldPassword" required 
                     [(ngModel)]="oldPassword" #pwd="ngModel" placeholder="Old Password">
             <div [hidden]="pwd.valid || pwd.pristine"
@@ -60,20 +58,17 @@
               Old password is required
             </div>
           </td>
-          <td align="center">
+          <td class="vert-aligned" align="center">
             <input  type="password" class="form-control" name="password" 
                     [(ngModel)]="modifiedUser.password" #pwd="ngModel" placeholder="Change Password">
           </td>
-          <td align="center">
+          <td class="vert-aligned" align="center">
             <input  type="password" class="{{repPwdClass()}}" name="password2" 
                     [(ngModel)]="repeatedPassword" #pwd2="ngModel" placeholder="Repeat New Password">
             <div [hidden]="checkPassword()"
                  class="alert alert-danger">
               Passwords do not match
             </div>  
-          </td>
-          <td align="center">
-            <button type="submit" class="btn btn-success" (click)="save()">Save</button>        
           </td>
         </tr>
       </table>

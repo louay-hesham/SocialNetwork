@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from SocialNetwork.helper_functions import *
 from backend.models import *
 import json
+import base64
+
 
 def register(request):
   data = extract_data(request)
@@ -67,8 +69,8 @@ def update_profile(request):
       user.nickname = updated_user_data['nickname']
     if 'phone' in updated_user_data:
       user.phone = updated_user_data['phone']
-    # if 'profilePic' in updated_user_data:
-    #   user.profilepic = updated_user_data['profilePic']
+    if 'profilePic' in updated_user_data:
+      user.profilepic = decode_base64(updated_user_data['profilePic'])
     if 'hometown' in updated_user_data:
       user.hometown = updated_user_data['hometown']
     if 'maritalStatus' in updated_user_data:
@@ -77,6 +79,7 @@ def update_profile(request):
       user.aboutme = updated_user_data['aboutMe']
     user.save()
     response = get_user_data(user.email, user.password)
-  except:
+  except Exception as e :
+    print(e)
     response = make_error_response('Incorrect password!')
   return HttpResponse(json.dumps(response))  

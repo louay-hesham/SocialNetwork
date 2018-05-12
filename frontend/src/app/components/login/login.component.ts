@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       response => {
         if (response['status'] == 'success') {
           this.common.makeSuccessMessage('Login successful')
-          this.common.parseUser(response['data'])
+          this.common.parseLoginUser(response['data'])
         } else {
           this.common.makeErrorMessage('Could not login', response['error_message'])
         }
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
         response => {
           if (response['status'] == 'success') {
             this.common.makeSuccessMessage('Registeration successfull');
-            this.common.parseUser(response['data'])
+            this.common.parseLoginUser(response['data'])
           } else {
             this.common.makeErrorMessage('Error while registeration', response['error_message']);
           }

@@ -49,4 +49,11 @@ export class ApiService {
     } 
     return this.http.post(this.baseUrl + 'getrequestscount/', data)  
   }
+
+  public getFriendRequests(email: string): Observable<any> {
+    let data = {
+      'email': email
+    }
+    return this.http.post(this.baseUrl + 'getfriendrequests/', data);
+  }
 }

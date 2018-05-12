@@ -14,6 +14,7 @@ import { AppComponent } from './components/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { EditProfileComponent } from './components/home/edit-profile/edit-profile.component';
+import { RequestsComponent } from './components/home/requests/requests.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { EditProfileComponent } from './components/home/edit-profile/edit-profil
     AppComponent,
     LoginComponent,
     HomeComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    RequestsComponent
   ],
   imports: [
     BrowserModule,

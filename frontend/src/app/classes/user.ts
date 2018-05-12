@@ -73,6 +73,5 @@ export class User {
     } else {
       return '/assets/female.jpg';
     }
-    
   }
 }

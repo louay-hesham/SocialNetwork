@@ -35,7 +35,7 @@ export class CommonService {
     });
   }
 
-  public parseUser(userData: string){
+  public parseUser(userData: string): User {
     let user = new User();
     user.email = userData['email'];
     user.password = userData['password'];
@@ -49,7 +49,11 @@ export class CommonService {
     user.hometown = userData['hometown'];
     user.maritalStatus = userData['maritalstatus'];
     user.aboutMe = userData['aboutme'];
-    this.user = user;
+    return user;
+  }
+
+  public parseLoginUser(userData: string){
+    this.user = this.parseUser(userData);
     this.saveUserCookie();
   }
 }

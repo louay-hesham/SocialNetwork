@@ -91,3 +91,22 @@ def count_received_requests(request):
   requests_count = Friendship.objects.filter(user2 = user, status = 0).count()
   response = make_success_response(requests_count)
   return HttpResponse(json.dumps(response))
+
+def get_friend_requests(request): 
+  data = extract_data(request)
+  email = data['email']
+  user = User.objects.get(email = email)
+  requests = Friendship.objects.filter(user2 = user, status = 0)
+  requests_data = jsonify_requests(requests)
+  response = make_success_response(requests_data)
+  return HttpResponse(json.dumps(response))
+
+def get_friends(request):
+  data = extract_data(request)
+  email = data['email']
+  user = User.objects.get(email = email)
+  friends1 = Friendship.objects.filter(user1 = user, status = 1)
+  friends2 = Friendship.objects.filter(user2 = user, status = 1)
+  friends_data = jsonify_requests(friends2)
+  response = make_success_response(friends_data)
+  return HttpResponse(json.dumps(response))  

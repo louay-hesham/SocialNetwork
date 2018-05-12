@@ -20,7 +20,7 @@ export class AppComponent {
       this.api.hashedLogin(email, password).subscribe(
         response => {
           if (response['status'] == 'success') {
-            this.common.parseUser(response['data'])
+            this.common.parseLoginUser(response['data'])
           } else {
             this.common.makeErrorMessage('Could not login', response['error_message'])
           }

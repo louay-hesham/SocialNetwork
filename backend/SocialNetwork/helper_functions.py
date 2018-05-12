@@ -72,3 +72,6 @@ def decode_base64(data):
  elif missing_padding == 3:
   data += '='
  return base64.b64decode(data)
+
+def jsonify_requests(requests): 
+  return [jsonify_user(request.user1) for request in requests]

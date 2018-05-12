@@ -27,7 +27,19 @@ export class RequestsComponent implements OnInit {
   }
 
   private accept(email: string) {
-    
+    this.api.acceptFriendRequest(this.common.user.email, email).subscribe(
+      response => {
+        if (response['status'] == 'success') {
+          this.requests = []
+          for (let userData of response['data']) {
+            this.requests.push(this.common.parseUser(userData));
+          }
+          this.common.refreshRequestsCount();
+        } else {
+          this.common.makeErrorMessage('Failed', response['error_message'])
+        }
+      }
+    )
   }
 
   private reject(email: string) {

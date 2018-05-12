@@ -17,13 +17,7 @@ export class HomeComponent implements OnInit {
   constructor(private cookie: CookieService, private common: CommonService, private api: ApiService) { }
 
   ngOnInit() {
-    this.api.getRequestsCount(this.common.user.email).subscribe(
-      response => {
-        if (response['status'] == 'success') {
-          this.requestsCount = response['data'];
-        }
-      }
-    )
+    this.common.refreshRequestsCount()
   }
 
   private logout() {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../classes/user'
+import { ApiService } from './api.service'
 import { CookieService } from 'ngx-cookie-service';
 import * as _swal from 'sweetalert';
 import { SweetAlert } from 'sweetalert/typings/core';
@@ -11,8 +12,9 @@ export class CommonService {
   public user: User = undefined;
   public departments: any;
   public courses: any;
+  public requestsCount: number;
 
-  constructor(private cookie: CookieService) { }
+  constructor(private cookie: CookieService, private api: ApiService) { }
 
   private saveUserCookie() {
     this.cookie.set('email', this.user.email);
@@ -55,5 +57,15 @@ export class CommonService {
   public parseLoginUser(userData: string){
     this.user = this.parseUser(userData);
     this.saveUserCookie();
+  }
+
+  public refreshRequestsCount() {
+    this.api.getRequestsCount(this.user.email).subscribe(
+      response => {
+        if (response['status'] == 'success') {
+          this.requestsCount = response['data'];
+        }
+      }
+    )
   }
 }

@@ -37,21 +37,19 @@ export class CommonService {
 
   public parseUser(userData: string){
     let user = new User();
-    userData = JSON.parse(userData);
-    user.email = userData[0]['pk'];
-    user.password = userData[0]['fields']['password'];
-    user.firstName = userData[0]['fields']['firstname'];
-    user.lastName = userData[0]['fields']['lastname'];
-    user.nickname = userData[0]['fields']['nickname'];
-    user.phone = userData[0]['fields']['phone'];
-    user.gender = userData[0]['fields']['gender'];
-    user.birthdate = userData[0]['fields']['birthdate'];
-    user.profilePic = userData[0]['fields']['profilepic'];
-    user.hometown = userData[0]['fields']['hometown'];
-    user.maritalStatus = userData[0]['fields']['maritalstatus'];
-    user.aboutMe = userData[0]['fields']['aboutme'];
+    user.email = userData['email'];
+    user.password = userData['password'];
+    user.firstName = userData['firstname'];
+    user.lastName = userData['lastname'];
+    user.nickname = userData['nickname'];
+    user.phone = userData['phone'];
+    user.gender = userData['gender'];
+    user.birthdate = userData['birthdate'];
+    user.profilePic = userData['profilepic'];
+    user.hometown = userData['hometown'];
+    user.maritalStatus = userData['maritalstatus'];
+    user.aboutMe = userData['aboutme'];
     this.user = user;
     this.saveUserCookie();
-    console.log(this.user.toJSON_noEcryption())
   }
 }

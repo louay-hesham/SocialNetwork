@@ -7,7 +7,6 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-
 class User(models.Model):
     email = models.CharField(db_column='Email', primary_key=True, max_length=50)  # Field name made lowercase.
     firstname = models.CharField(db_column='FirstName', max_length=50)  # Field name made lowercase.
@@ -17,7 +16,7 @@ class User(models.Model):
     phone = models.CharField(db_column='Phone', max_length=15, blank=True, null=True)  # Field name made lowercase.
     gender = models.IntegerField(db_column='Gender')  # Field name made lowercase.
     birthdate = models.DateTimeField(db_column='Birthdate')  # Field name made lowercase.
-    profilepic = models.ImageField(upload_to="ProfilePics/", db_column='ProfilePic', blank=True, null=True)  # Field name made lowercase.
+    profilepic = models.BinaryField(db_column='ProfilePic', blank=True, null=True)  # Field name made lowercase.
     hometown = models.CharField(db_column='Hometown', max_length=50, blank=True, null=True)  # Field name made lowercase.
     maritalstatus = models.CharField(db_column='MaritalStatus', max_length=50, blank=True, null=True)  # Field name made lowercase.
     aboutme = models.TextField(db_column='AboutMe', blank=True, null=True)  # Field name made lowercase.

@@ -57,8 +57,6 @@ def update_profile(request):
     user = User.objects.get(email = original_email, password = original_hashed_password)
     updated_user_data = data['updatedData']
 
-    if 'email' in updated_user_data:
-      user.email = updated_user_data['email']
     if 'firstName' in updated_user_data:
       user.firstname = updated_user_data['firstName']
     if 'lastName' in updated_user_data:
@@ -69,8 +67,8 @@ def update_profile(request):
       user.nickname = updated_user_data['nickname']
     if 'phone' in updated_user_data:
       user.phone = updated_user_data['phone']
-    if 'profilePic' in updated_user_data:
-      user.profilepic = updated_user_data['profilePic']
+    # if 'profilePic' in updated_user_data:
+    #   user.profilepic = updated_user_data['profilePic']
     if 'hometown' in updated_user_data:
       user.hometown = updated_user_data['hometown']
     if 'maritalStatus' in updated_user_data:

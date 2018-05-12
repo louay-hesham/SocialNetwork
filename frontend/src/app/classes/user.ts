@@ -66,6 +66,13 @@ export class User {
   }
 
   public getProfilePic(): string {
-    return 'data:image/png;base64,' + this.profilePic
+    if (this.profilePic != undefined && this.profilePic != '') {
+      return 'data:image/png;base64,' + this.profilePic;
+    } else if (this.gender) {
+      return '/assets/male.jpg';
+    } else {
+      return '/assets/female.jpg';
+    }
+    
   }
 }

@@ -1,7 +1,6 @@
-import json
+import json, sys, base64
 from backend.models import *
 from django.core import serializers
-import base64
 
 def decode_password(password):
   numbers = password['words']
@@ -30,7 +29,10 @@ def make_success_response(data):
   }
 
 def jsonify_user(user):
-  pp = base64.b64encode(user.profilepic).decode()
+  if user.profilepic == None:
+    pp = None
+  else :
+    pp = base64.b64encode(user.profilepic).decode()
   return {
     'email': user.email,
     'firstname': user.firstname,
@@ -53,6 +55,8 @@ def get_user_data(email, password):
     response = make_success_response(user_data)
   except Exception as e :
     print(e)
+    print(sys.exc_info()[0], sys.exc_info()[1], sys.exc_info()[2])
+    # raise e
     response = make_error_response('Incorrect email or password')
   return response
 

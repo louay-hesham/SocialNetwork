@@ -71,4 +71,12 @@ export class ApiService {
     }
     return this.http.post(this.baseUrl + 'acceptfriendrequest/', data);
   }  
+
+  public rejectFriendRequest(accepter: string, friend: string): Observable<any>  {
+    let data = {
+      'accepter': accepter,
+      'friend': friend
+    }
+    return this.http.post(this.baseUrl + 'rejectfriendrequest/', data);
+  }  
 }

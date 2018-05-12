@@ -122,3 +122,14 @@ def accept_friend_request(request):
   requests_data = jsonify_requests(requests)
   response = make_success_response(requests_data)
   return HttpResponse(json.dumps(response))
+
+def reject_friend_request(request):
+  data = extract_data(request)
+  user = User.objects.get(email = data['accepter'])
+  friend = User.objects.get(email = data['friend'])
+  friendship = Friendship.objects.get(user1 = friend, user2 = user)
+  friendship.delete()
+  requests = Friendship.objects.filter(user2 = user, status = 0)
+  requests_data = jsonify_requests(requests)
+  response = make_success_response(requests_data)
+  return HttpResponse(json.dumps(response))

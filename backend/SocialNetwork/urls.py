@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^getfriendrequests/', csrf_exempt(get_friend_requests)),
     url(r'^getfriends/', csrf_exempt(get_friends)),
     url(r'^acceptfriendrequest/', csrf_exempt(accept_friend_request)),
+    url(r'^rejectfriendrequest/', csrf_exempt(reject_friend_request)),
 ]

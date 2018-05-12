@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark row">
   <div class="col-md-6">
+    <img [src]="common.user.getProfilePic()" class="img-thumbnail" style="max-height: 60px; max-width: 60px;"/>
     <a class="navbar-brand text-light">Logged in as {{common.user.getDisplayName()}}</a>
   </div>
   <button class="btn btn-success col-md-1 margin-padding" (click)="setWindow(0)">Home</button>

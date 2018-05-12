@@ -64,4 +64,8 @@ export class User {
       return this.nickname;
     }
   }
+
+  public getProfilePic(): string {
+    return 'data:image/png;base64,' + this.profilePic
+  }
 }

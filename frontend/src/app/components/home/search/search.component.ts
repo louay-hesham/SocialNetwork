@@ -9,7 +9,7 @@ import { ApiService } from '../../../services/api.service'
 })
 export class SearchComponent implements OnInit {
 
-  private query: string;
+  private query: string = '';
   private searchType: number = -1;
   private searchResults: any[] = [];
 

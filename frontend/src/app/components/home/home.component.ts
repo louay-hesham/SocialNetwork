@@ -11,7 +11,7 @@ import { ApiService } from '../../services/api.service'
 })
 export class HomeComponent implements OnInit {
 
-  private window: number = 4;
+  private window: number = 0;
   private requestsCount: number = 0;
 
   constructor(private cookie: CookieService, private common: CommonService, private api: ApiService) { }

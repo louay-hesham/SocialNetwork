@@ -25,5 +25,14 @@ CREATE TABLE Friendship (
   PRIMARY KEY (User1, User2),
   FOREIGN KEY (User1) REFERENCES User(Email),
   FOREIGN KEY (User2) REFERENCES User(Email)
-)
+);
 
+CREATE TABLE Post (
+  ID INTEGER auto_increment primary key,
+  Public boolean not null,
+  PublishTime datetime not null default CURRENT_TIMESTAMP,
+  Image longblob,
+  Caption mediumtext not null,
+  Poster varchar(50),
+  foreign key (Poster) references User(Email)
+);

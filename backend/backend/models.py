@@ -19,6 +19,19 @@ class Friendship(models.Model):
         unique_together = (('user1', 'user2'),)
 
 
+class Post(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    public = models.IntegerField(db_column='Public')  # Field name made lowercase.
+    publishtime = models.DateTimeField(db_column='PublishTime')  # Field name made lowercase.
+    image = models.BinaryField(db_column='Image', blank=True, null=True)  # Field name made lowercase.
+    caption = models.TextField(db_column='Caption')  # Field name made lowercase.
+    poster = models.ForeignKey('User', models.DO_NOTHING, db_column='Poster', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Post'
+
+
 class User(models.Model):
     email = models.CharField(db_column='Email', primary_key=True, max_length=50)  # Field name made lowercase.
     firstname = models.CharField(db_column='FirstName', max_length=50)  # Field name made lowercase.

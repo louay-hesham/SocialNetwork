@@ -16,6 +16,8 @@ import { HomeComponent } from './components/home/home.component';
 import { EditProfileComponent } from './components/home/edit-profile/edit-profile.component';
 import { RequestsComponent } from './components/home/requests/requests.component';
 import { FriendsComponent } from './components/home/friends/friends.component';
+import { SearchComponent } from './components/home/search/search.component';
+import { PeopleComponent } from './components/home/search/people/people.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { FriendsComponent } from './components/home/friends/friends.component';
     HomeComponent,
     EditProfileComponent,
     RequestsComponent,
-    FriendsComponent
+    FriendsComponent,
+    SearchComponent,
+    PeopleComponent
   ],
   imports: [
     BrowserModule,

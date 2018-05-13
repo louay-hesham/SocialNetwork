@@ -78,5 +78,12 @@ export class ApiService {
       'friend': friend
     }
     return this.http.post(this.baseUrl + 'rejectfriendrequest/', data);
-  }  
+  }
+
+  public searchPeople(query: string): Observable<any> {
+    let data = {
+      'query': query
+    }
+    return this.http.post(this.baseUrl + 'searchpoeple/', data);
+  }
 }

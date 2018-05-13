@@ -133,3 +133,15 @@ def reject_friend_request(request):
   requests_data = jsonify_requests(requests)
   response = make_success_response(requests_data)
   return HttpResponse(json.dumps(response))
+
+def search_poeple(request):
+  data = extract_data(request)
+  query = data['query']
+  by_email = User.objects.filter(email__icontains = query)
+  by_fname = User.objects.filter(firstname__icontains = query)
+  by_lname = User.objects.filter(lastname__icontains = query)
+  by_hometown = User.objects.filter(hometown__icontains = query)
+  users = (by_email | by_hometown | by_lname | by_fname)
+  users_data = [jsonify_user(user) for user in users]
+  response = make_success_response(users_data)
+  return HttpResponse(json.dumps(response))

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import * as crypto from 'crypto-js';
 import { User } from '../classes/user'
+import { Post } from '../classes/post'
 import { Observable } from 'rxjs';
 
 
@@ -85,5 +86,15 @@ export class ApiService {
       'query': query
     }
     return this.http.post(this.baseUrl + 'searchpoeple/', data);
+  }
+
+  public publishPost(email: string ,post: Post): Observable<any> {
+    let data = {
+      'poster': email,
+      'caption': post.caption,
+      'isPublic': post.isPublic,
+      'image': post.image,
+    }
+    return this.http.post(this.baseUrl + 'publishpost/', data);
   }
 }

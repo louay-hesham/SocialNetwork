@@ -28,4 +28,18 @@ export class NewPostComponent implements OnInit {
     }
   }
 
+  private publish() {
+    if (this.newPost.caption == undefined || this.newPost.caption == '') {
+      this.common.makeErrorMessage('Failed to publish post!', 'Please write a caption.');
+    } else {
+      this.api.publishPost(this.common.user.email, this.newPost).subscribe(
+        response => {
+          console.log(response);
+          this.newPost = new Post();
+          this.common.makeSuccessMessage('Post published successfully')
+        }
+      )
+    }
+  }
+
 }

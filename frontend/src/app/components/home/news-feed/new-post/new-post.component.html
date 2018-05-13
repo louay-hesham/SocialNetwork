@@ -5,12 +5,14 @@
     <div class="table-responsive">
       <table class="table">
         <tr>
-          <td class="vert-aligned" width="90%" rowspan="2">
-            <label for="caption">Caption:</label>
-            <textarea class="form-control" rows="5" id="caption" name="caption" [(ngModel)]="newPost.caption"></textarea>
+          <td class="vert-aligned" width="85%" rowspan="2">
+            <textarea class="form-control" rows="3" placeholder="Write Caption here" name="caption" 
+                      [(ngModel)]="newPost.caption"></textarea>
           </td>
           <td class="vert-aligned" align="center">
-            public checkbox here   
+            <div class="checkbox">
+              <label><input type="checkbox" name="isPublic" [(ngModel)]="newPost.isPublic">Public?</label>
+            </div>  
           </td>
         </tr>
         <tr>

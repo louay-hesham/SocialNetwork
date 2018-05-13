@@ -22,7 +22,7 @@ class Friendship(models.Model):
 class Post(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     public = models.IntegerField(db_column='Public')  # Field name made lowercase.
-    publishtime = models.DateTimeField(db_column='PublishTime')  # Field name made lowercase.
+    publishtime = models.DateTimeField(db_column='PublishTime', auto_now_add=True)  # Field name made lowercase.
     image = models.BinaryField(db_column='Image', blank=True, null=True)  # Field name made lowercase.
     caption = models.TextField(db_column='Caption')  # Field name made lowercase.
     poster = models.ForeignKey('User', models.DO_NOTHING, db_column='Poster', blank=True, null=True)  # Field name made lowercase.

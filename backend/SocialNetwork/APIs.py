@@ -145,3 +145,16 @@ def search_poeple(request):
   users_data = [jsonify_user(user) for user in users]
   response = make_success_response(users_data)
   return HttpResponse(json.dumps(response))
+
+def publish_post(request):
+  data = extract_data(request)
+  user = User.objects.get(email = data['poster'])
+  post = Post()
+  post.caption = data['caption']
+  post.public = data['isPublic']
+  post.poster = user
+  if 'image' in data:
+    post.image = decode_base64(data['image'])
+  post.save()
+  response = make_success_response('Indomie')
+  return HttpResponse(json.dumps(response))  

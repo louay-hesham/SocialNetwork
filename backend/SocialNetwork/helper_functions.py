@@ -92,5 +92,6 @@ def jsonify_post(post):
   return {
     'poster': jsonify_user(post.poster),
     'caption': post.caption,
+    'time': str(post.publishtime),
     'image': image
   }

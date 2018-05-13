@@ -97,4 +97,11 @@ export class ApiService {
     }
     return this.http.post(this.baseUrl + 'publishpost/', data);
   }
+
+  public getAllPosts(email: string): Observable<any> {
+    let data = {
+      'email': email
+    }
+    return this.http.post(this.baseUrl + 'getallposts/', data);
+  }
 }

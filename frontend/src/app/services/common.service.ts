@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../classes/user'
+import { Post } from '../classes/post'
 import { ApiService } from './api.service'
 import { CookieService } from 'ngx-cookie-service';
 import * as _swal from 'sweetalert';
@@ -37,7 +38,7 @@ export class CommonService {
     });
   }
 
-  public parseUser(userData: string): User {
+  public parseUser(userData: any): User {
     let user = new User();
     user.email = userData['email'];
     user.password = userData['password'];
@@ -54,7 +55,7 @@ export class CommonService {
     return user;
   }
 
-  public parseLoginUser(userData: string){
+  public parseLoginUser(userData: any){
     this.user = this.parseUser(userData);
     this.saveUserCookie();
   }
@@ -67,5 +68,14 @@ export class CommonService {
         }
       }
     )
+  }
+
+  public parsePost(postData: any): Post {
+    let post = new Post();
+    post.caption = postData['caption']
+    post.image = postData['image']
+    post.time = postData['time']
+    post.poster = this.parseUser(postData['poster'])
+    return post;
   }
 }

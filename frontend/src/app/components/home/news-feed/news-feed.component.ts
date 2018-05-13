@@ -23,7 +23,6 @@ export class NewsFeedComponent implements OnInit {
           for (let p of response['data']) {
             this.posts.push(this.common.parsePost(p))
           }
-          console.log(this.posts);
         }
       }
     )

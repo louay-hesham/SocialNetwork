@@ -159,9 +159,14 @@ def publish_post(request):
 
 def get_all_posts(request):
   data = extract_data(request)
-  user = User.objects.get(email = data['email'])
+  email = data['email']
+  user = User.objects.get(email = email)
   by_user = Post.objects.filter(poster=user)
-
-  posts_data = jsonify_posts(by_user)
+  friends = get_all_friends(email)
+  by_friends = Post.objects.filter(poster__in=friends)
+  non_friends = User.objects.all().exclude(email__in=friends).exclude(email=user.email)
+  by_non_friends = Post.objects.filter(poster__in=non_friends, public=1)
+  posts = (by_user | by_friends | by_non_friends) 
+  posts_data = jsonify_posts(posts)
   response = make_success_response(posts_data)
   return HttpResponse(json.dumps(response))

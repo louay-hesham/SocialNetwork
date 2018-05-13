@@ -98,8 +98,9 @@ def jsonify_post(post):
 
 def get_all_friends(user_email):
   user = User.objects.get(email = user_email)
-  friends1 = Friendship.objects.filter(user1 = user, status = 1)
-  friends2 = Friendship.objects.filter(user2 = user, status = 1)
-  friends = [friendship.user2 for friendship in friends1]
-  friends += [friendship.user1 for friendship in friends2]
+  friends1 = Friendship.objects.filter(user1 = user, status = 1).values('user2')
+  friends2 = Friendship.objects.filter(user2 = user, status = 1).values('user1')
+  friends = friends1.union(friends2)
+  friends_emails = [friend['user2'] for friend in friends]
+  friends = User.objects.filter(email__in=friends_emails)
   return friends

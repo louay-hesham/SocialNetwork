@@ -104,10 +104,8 @@ def get_friend_requests(request):
 def get_friends(request):
   data = extract_data(request)
   email = data['email']
-  user = User.objects.get(email = email)
-  friends1 = Friendship.objects.filter(user1 = user, status = 1)
-  friends2 = Friendship.objects.filter(user2 = user, status = 1)
-  friends_data = jsonify_friends(friends1, friends2)
+  friends = get_all_friends(email)
+  friends_data = [jsonify_user(friend) for friend in friends]
   response = make_success_response(friends_data)
   return HttpResponse(json.dumps(response))
 

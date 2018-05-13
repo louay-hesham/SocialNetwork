@@ -95,3 +95,11 @@ def jsonify_post(post):
     'time': str(post.publishtime),
     'image': image
   }
+
+def get_all_friends(user_email):
+  user = User.objects.get(email = user_email)
+  friends1 = Friendship.objects.filter(user1 = user, status = 1)
+  friends2 = Friendship.objects.filter(user2 = user, status = 1)
+  friends = [friendship.user2 for friendship in friends1]
+  friends += [friendship.user1 for friendship in friends2]
+  return friends

@@ -9,8 +9,8 @@ from django.db import models
 
 
 class Friendship(models.Model):
-    user1 = models.ForeignKey('User', models.DO_NOTHING, db_column='User1', primary_key=True)  # Field name made lowercase.
-    user2 = models.ForeignKey('User', models.DO_NOTHING, db_column='User2', related_name='%(class)s_requests_created')  # Field name made lowercase.
+    user1 = models.ForeignKey('User', models.DO_NOTHING, db_column='User1', primary_key=True, related_name='user1')  # Field name made lowercase.
+    user2 = models.ForeignKey('User', models.DO_NOTHING, db_column='User2', related_name='user2')  # Field name made lowercase.
     status = models.IntegerField(db_column='Status')  # Field name made lowercase.
 
     class Meta:

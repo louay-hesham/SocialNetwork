@@ -32,4 +32,5 @@ urlpatterns = [
     url(r'^rejectfriendrequest/', csrf_exempt(reject_friend_request)),
     url(r'^searchpoeple/', csrf_exempt(search_poeple)),
     url(r'^publishpost/', csrf_exempt(publish_post)),
+    url(r'^getallposts/', csrf_exempt(get_all_posts)),
 ]

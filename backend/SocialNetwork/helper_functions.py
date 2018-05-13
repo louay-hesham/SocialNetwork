@@ -80,3 +80,17 @@ def jsonify_friends(friends1, friends2):
   friends_data = [jsonify_user(friendship.user2) for friendship in friends1]
   friends_data += [jsonify_user(friendship.user1) for friendship in friends2]
   return friends_data
+
+def jsonify_posts(posts):
+  return [jsonify_post(post) for post in posts]
+
+def jsonify_post(post):
+  if post.image == None:
+    image = None
+  else :
+    image = base64.b64encode(post.image).decode()
+  return {
+    'poster': jsonify_user(post.poster),
+    'caption': post.caption,
+    'image': image
+  }

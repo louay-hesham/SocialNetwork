@@ -157,4 +157,13 @@ def publish_post(request):
     post.image = decode_base64(data['image'])
   post.save()
   response = make_success_response('Indomie')
-  return HttpResponse(json.dumps(response))  
+  return HttpResponse(json.dumps(response))
+
+def get_all_posts(request):
+  data = extract_data(request)
+  user = User.objects.get(email = data['email'])
+  by_user = Post.objects.filter(poster=user)
+
+  posts_data = jsonify_posts(by_user)
+  response = make_success_response(posts_data)
+  return HttpResponse(json.dumps(response))

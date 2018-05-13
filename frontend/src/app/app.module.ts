@@ -17,7 +17,7 @@ import { EditProfileComponent } from './components/home/edit-profile/edit-profil
 import { RequestsComponent } from './components/home/requests/requests.component';
 import { FriendsComponent } from './components/home/friends/friends.component';
 import { SearchComponent } from './components/home/search/search.component';
-import { PeopleComponent } from './components/home/search/people/people.component';
+import { NewsFeedComponent } from './components/home/news-feed/news-feed.component';
 
 
 @NgModule({
@@ -29,7 +29,7 @@ import { PeopleComponent } from './components/home/search/people/people.componen
     RequestsComponent,
     FriendsComponent,
     SearchComponent,
-    PeopleComponent
+    NewsFeedComponent
   ],
   imports: [
     BrowserModule,

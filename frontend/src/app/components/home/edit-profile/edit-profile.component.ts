@@ -76,7 +76,7 @@ export class EditProfileComponent implements OnInit {
         response => {
           if (response['status'] == 'success') {
             this.common.makeSuccessMessage('Successfully updated info');
-            this.common.parseUser(response['data'])
+            this.common.parseLoginUser(response['data'])
           } else {
             this.common.makeErrorMessage('Failed to update user info', response['error_message']);
           }

@@ -18,6 +18,7 @@ import { RequestsComponent } from './components/home/requests/requests.component
 import { FriendsComponent } from './components/home/friends/friends.component';
 import { SearchComponent } from './components/home/search/search.component';
 import { NewsFeedComponent } from './components/home/news-feed/news-feed.component';
+import { NewPostComponent } from './components/home/news-feed/new-post/new-post.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { NewsFeedComponent } from './components/home/news-feed/news-feed.compone
     RequestsComponent,
     FriendsComponent,
     SearchComponent,
-    NewsFeedComponent
+    NewsFeedComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,

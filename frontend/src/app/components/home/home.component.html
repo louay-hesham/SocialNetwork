@@ -11,6 +11,7 @@
   <button class="btn btn-danger col-md-1 margin-padding" (click)="logout()">Logout</button>
 </nav>
 
+<app-news-feed  *ngIf="window == 0"></app-news-feed>
 <app-edit-profile *ngIf="window == 1"></app-edit-profile>
 <app-friends *ngIf="window == 2"></app-friends>
 <app-requests *ngIf="window == 3"></app-requests>

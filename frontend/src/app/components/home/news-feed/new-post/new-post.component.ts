@@ -20,4 +20,12 @@ export class NewPostComponent implements OnInit {
     this.newPost.poster = this.common.user;
   }
 
+  onFileChanged(event: any) {
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = e => { 
+      this.newPost.image = e.target.result.substring(23);
+    }
+  }
+
 }

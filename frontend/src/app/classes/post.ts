@@ -9,7 +9,7 @@ export class Post {
   public poster: User;
 
   public getImage(): string {
-    return 'data:image/png;base64,' + this.image;
+    return 'data:image/jpeg;base64,' + this.image;
   }
    
 }

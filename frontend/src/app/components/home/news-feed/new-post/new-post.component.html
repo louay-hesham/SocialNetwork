@@ -1,0 +1,31 @@
+<div>
+  <h1>Publish a new post</h1>
+
+  <form method="post">
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <td class="vert-aligned" width="90%" rowspan="2">
+            <label for="caption">Caption:</label>
+            <textarea class="form-control" rows="5" id="caption" name="caption" [(ngModel)]="newPost.caption"></textarea>
+          </td>
+          <td class="vert-aligned" align="center">
+            public checkbox here   
+          </td>
+        </tr>
+        <tr>
+          <td class="vert-aligned" align="center">
+            <button type="submit" class="btn btn-success" (click)="publish()">Publish</button>        
+          </td>
+        </tr>
+        <tr>
+          <td class="vert-aligned" align="center" colspan="2">
+            <label for="image">Image:</label>
+            <input class="form-control" type="file" id="image" #fileInput (change)="onFileChanged($event)" name="image">
+            <img [src]="newPost.getImage()" class="img-thumbnail" align="center" style="max-height: 500px; max-width: 500px;"/>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</div>

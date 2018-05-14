@@ -33,4 +33,5 @@ urlpatterns = [
     url(r'^searchpoeple/', csrf_exempt(search_poeple)),
     url(r'^publishpost/', csrf_exempt(publish_post)),
     url(r'^getallposts/', csrf_exempt(get_all_posts)),
+    url(r'^searchposts/', csrf_exempt(search_posts)),
 ]

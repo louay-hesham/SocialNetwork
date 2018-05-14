@@ -1,7 +1,7 @@
 <div class="row">
   <input type="text" class="form-control col-md-7 margin-padding" [(ngModel)]="query" placeholder="Search">
   <button class="btn btn-primary margin-padding col-md-2" (click)="searchPeople()">Search People</button>
-  <button class="btn btn-primary margin-padding col-md-2">Search Posts</button>
+  <button class="btn btn-primary margin-padding col-md-2" (click)="searchPosts()">Search Posts</button>
 </div>
 
 <div *ngIf="searchType == 0">
@@ -21,6 +21,9 @@
 </div>
 
 <div *ngIf="searchType == 1">
+  <h2 *ngIf="searchResults.length == 0">No results!</h2>
+  <h2 *ngIf="searchResults.length != 0">Found {{searchResults.length}} post(s)</h2>
+
   <div *ngFor="let post of searchResults">
     <table class="table">
       <tr>

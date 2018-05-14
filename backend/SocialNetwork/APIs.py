@@ -170,3 +170,11 @@ def get_all_posts(request):
   posts_data = jsonify_posts(posts)
   response = make_success_response(posts_data)
   return HttpResponse(json.dumps(response))
+
+def search_posts(request):
+  data = extract_data(request)
+  query = data['query']
+  posts = Post.objects.filter(caption__icontains = query)
+  posts_data = jsonify_posts(posts)
+  response = make_success_response(posts_data)
+  return HttpResponse(json.dumps(response))

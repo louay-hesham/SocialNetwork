@@ -88,6 +88,13 @@ export class ApiService {
     return this.http.post(this.baseUrl + 'searchpoeple/', data);
   }
 
+  public searchPosts(query: string): Observable<any> {
+    let data = {
+      'query': query
+    }
+    return this.http.post(this.baseUrl + 'searchposts/', data);
+  }
+
   public publishPost(email: string ,post: Post): Observable<any> {
     let data = {
       'poster': email,

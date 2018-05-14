@@ -34,4 +34,18 @@ export class SearchComponent implements OnInit {
     )
   }
 
+  private searchPosts() {
+    this.searchType = 1;
+    this.searchResults = []
+    this.api.searchPosts(this.query).subscribe(
+      response => {
+        if (response['status'] == 'success') {
+          for (let postData of response['data']) {
+            this.searchResults.push(this.common.parsePost(postData));
+          }
+        }
+      }
+    )
+  }  
+
 }

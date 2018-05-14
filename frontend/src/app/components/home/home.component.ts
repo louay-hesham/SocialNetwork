@@ -29,4 +29,12 @@ export class HomeComponent implements OnInit {
   private setWindow(n: number) {
     this.window = n;
   }
+
+  private showProfile() {
+    this.api.getProfileData(this.common.user.email, this.common.user.email).subscribe(
+      response => {
+        console.log(response)
+      }
+    )
+  }
 }

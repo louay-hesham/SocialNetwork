@@ -38,3 +38,7 @@ body {
 .table tbody > tr > td.vert-aligned {
   vertical-align: middle;  
 }
+
+.pointer {
+  cursor: pointer;
+}

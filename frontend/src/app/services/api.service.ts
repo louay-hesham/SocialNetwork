@@ -111,4 +111,12 @@ export class ApiService {
     }
     return this.http.post(this.baseUrl + 'getallposts/', data);
   }
+
+  public getProfileData(viewerEmail: string, viewedEmail: string): Observable<any> {
+    let data = {
+      'email': viewerEmail,
+      'viewed': viewedEmail
+    }
+    return this.http.post(this.baseUrl + 'getprofile/', data);
+  }
 }

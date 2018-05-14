@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonService } from '../../../../services/common.service'
 import { ApiService } from '../../../../services/api.service'
 import { User } from '../../../../classes/user'
@@ -10,6 +10,9 @@ import { Post } from '../../../../classes/post'
   styleUrls: ['./new-post.component.css']
 })
 export class NewPostComponent implements OnInit {
+
+  @Output()
+  public publishClick: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private newPost: Post;
 
@@ -37,6 +40,7 @@ export class NewPostComponent implements OnInit {
           console.log(response);
           this.newPost = new Post();
           this.common.makeSuccessMessage('Post published successfully')
+          this.publishClick.emit(true);
         }
       )
     }

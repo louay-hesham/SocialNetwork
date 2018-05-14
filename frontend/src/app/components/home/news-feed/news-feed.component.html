@@ -1,4 +1,4 @@
-<app-new-post></app-new-post>
+<app-new-post (publishClick)="refreshPosts($event)"></app-new-post>
 
 <div *ngFor="let post of posts">
   <table class="table">

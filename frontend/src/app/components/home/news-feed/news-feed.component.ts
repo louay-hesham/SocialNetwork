@@ -16,16 +16,22 @@ export class NewsFeedComponent implements OnInit {
   constructor(private common: CommonService, private api: ApiService) { }
 
   ngOnInit() {
-    this.posts = []
-    this.api.getAllPosts(this.common.user.email).subscribe(
-      response => {
-        if (response['status'] == 'success') {
-          for (let p of response['data']) {
-            this.posts.push(this.common.parsePost(p))
+    this.refreshPosts(true);
+  }
+
+  private refreshPosts(status: boolean) {
+    if(status) {
+      this.posts = []
+      this.api.getAllPosts(this.common.user.email).subscribe(
+        response => {
+          if (response['status'] == 'success') {
+            for (let p of response['data']) {
+              this.posts.push(this.common.parsePost(p))
+            }
           }
         }
-      }
-    )
+      )
+    }
   }
 
 }

@@ -10,9 +10,16 @@
                       [(ngModel)]="newPost.caption"></textarea>
           </td>
           <td class="vert-aligned" align="center">
-            <div class="checkbox">
-              <label><input type="checkbox" name="isPublic" [(ngModel)]="newPost.isPublic">Public?</label>
-            </div>  
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" 
+                      aria-haspopup="true" aria-expanded="false" id="publicLabel">
+                {{publicText()}}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="publicLabel">
+                <button class="dropdown-item" type="button" (click)="newPost.isPublic = true">Public</button>
+                <button class="dropdown-item" type="button" (click)="newPost.isPublic = false">Private</button>
+              </div>
+            </div>
           </td>
         </tr>
         <tr>

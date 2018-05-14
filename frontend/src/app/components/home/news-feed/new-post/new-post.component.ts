@@ -46,4 +46,12 @@ export class NewPostComponent implements OnInit {
     }
   }
 
+  private publicText(): string {
+    if (this.newPost.isPublic) {
+      return 'Public';
+    } else {
+      return 'Private';
+    }
+  }
+
 }

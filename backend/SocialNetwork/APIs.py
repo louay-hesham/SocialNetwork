@@ -185,15 +185,18 @@ def get_profile(request):
   viewed_user_email = data['viewed']
   user = User.objects.get(email=user_email)
   viewed_user = User.objects.get(email=viewed_user_email)
-  f1 = Friendship.objects.filter(user1=user, user2=viewed_user)
-  f2 = Friendship.objects.filter(user2=user, user1=viewed_user)
-  f = (f1 | f2)
-  if len(f) == 0:
-    is_friends = False
-  elif f[0].status == 0:
-    is_friends = False
-  else:
+  if user_email == viewed_user_email:
     is_friends = True
+  else:
+    f1 = Friendship.objects.filter(user1=user, user2=viewed_user)
+    f2 = Friendship.objects.filter(user2=user, user1=viewed_user)
+    f = (f1 | f2)
+    if len(f) == 0:
+      is_friends = False
+    elif f[0].status == 0:
+      is_friends = False
+    else:
+      is_friends = True
   posts = Post.objects.filter(poster = viewed_user) if is_friends else Post.objects.filter(poster=viewed_user, public=1)
   data = {
     'userData': jsonify_user(viewed_user),

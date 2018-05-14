@@ -28,11 +28,13 @@ def make_success_response(data):
     'data': data
   }
 
-def jsonify_user(user):
+def jsonify_user(user, show_private=True):
   if user.profilepic == None:
     pp = None
   else :
     pp = base64.b64encode(user.profilepic).decode()
+
+  (birthdate, about_me) = (str(user.birthdate), user.aboutme) if show_private else (None, None)
   return {
     'email': user.email,
     'firstname': user.firstname,
@@ -41,11 +43,11 @@ def jsonify_user(user):
     'password': user.password,
     'phone': user.phone,
     'gender': user.gender,
-    'birthdate': str(user.birthdate),
+    'birthdate': birthdate,
     'profilepic': pp,
     'hometown': user.hometown,
     'maritalstatus':user.maritalstatus,
-    'aboutme': user.aboutme
+    'aboutme': about_me
   }
 
 def get_user_data(email, password):

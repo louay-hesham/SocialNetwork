@@ -151,4 +151,12 @@ export class ApiService {
     }
     return this.http.post(this.baseUrl + 'sendrequest/', data);
   }
+
+  public deleteFriend(deleterEmail: string, viewedEmail: string): Observable<any> {
+    let data = {
+      'email': deleterEmail,
+      'viewed': viewedEmail
+    }
+    return this.http.post(this.baseUrl + 'deletefriend/', data); 
+  }
 }

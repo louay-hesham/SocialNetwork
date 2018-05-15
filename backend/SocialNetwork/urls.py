@@ -36,4 +36,5 @@ urlpatterns = [
     url(r'^searchposts/', csrf_exempt(search_posts)),
     url(r'^getprofile/', csrf_exempt(get_profile)),
     url(r'^sendrequest/', csrf_exempt(send_friend_request)),
+    url(r'^deletefriend/', csrf_exempt(delete_friend)),
 ]

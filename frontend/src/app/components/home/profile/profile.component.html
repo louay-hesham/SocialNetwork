@@ -9,7 +9,9 @@
         <div *ngIf="friendshipStatus != 'self'">
           <button *ngIf="friendshipStatus == 'nothing'" class="btn btn-primary" (click)="sendRequest()">Add Friend</button>
           <button *ngIf="friendshipStatus == 'sent'" class="btn btn-danger" (click)="deleteRequest()">Delete Request</button>
-          <button *ngIf="friendshipStatus == 'friends'" class="btn btn-danger">Delete From Friends</button>
+          <button *ngIf="friendshipStatus == 'friends'" class="btn btn-danger" (click)="deleteFriend()">
+            Delete From Friends
+          </button>
           <div *ngIf="friendshipStatus == 'received'">
             <button class="btn btn-success" (click)="acceptRequest()">Accept Request</button>
             <button class="btn btn-danger" (click)="rejectRequest()">Reject Request</button>

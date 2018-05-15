@@ -228,3 +228,23 @@ def send_friend_request(request):
   friendship.status = 0
   friendship.save()
   return get_profile(request)
+
+def delete_friend(request):
+  data = extract_data(request)
+  user_email = data['email']
+  viewed_user_email = data['viewed']
+  user = User.objects.get(email=user_email)
+  viewed_user = User.objects.get(email=viewed_user_email)
+  f1 = Friendship.objects.filter(user1=user, user2=viewed_user)
+  f2 = Friendship.objects.filter(user2=user, user1=viewed_user)
+  f = (f1 | f2)
+  friendship = f[0]
+  friendship.delete()
+  posts = Post.objects.filter(poster=viewed_user, public=1)
+  data = {
+    'userData': jsonify_user(viewed_user, False),
+    'posts': jsonify_posts(posts),
+    'friendshipStatus': 'nothing'
+  }
+  response = make_success_response(data)
+  return HttpResponse(json.dumps(response))

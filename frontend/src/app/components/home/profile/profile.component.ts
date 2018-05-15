@@ -55,6 +55,38 @@ export class ProfileComponent implements OnInit {
     )
   }
 
+  private rejectRequest() {
+    this.api.rejectFriendRequest(this.common.user.email, this.user.email, 1).subscribe(
+      response => {
+        if (response['status'] == 'success') {
+          this.user = this.common.parseUser(response['data']['userData'])
+          this.posts = [];
+          for(let postData of response['data']['posts']) {
+            this.posts.push(this.common.parsePost(postData))
+          }
+          this.friendshipStatus = response['data']['friendshipStatus']
+          this.common.refreshRequestsCount();
+        }
+      }
+    )
+  }
+
+  private deleteRequest() {
+    this.api.rejectFriendRequest(this.user.email, this.common.user.email, 2).subscribe(
+      response => {
+        if (response['status'] == 'success') {
+          this.user = this.common.parseUser(response['data']['userData'])
+          this.posts = [];
+          for(let postData of response['data']['posts']) {
+            this.posts.push(this.common.parsePost(postData))
+          }
+          this.friendshipStatus = response['data']['friendshipStatus']
+          this.common.refreshRequestsCount();
+        }
+      }
+    )
+  }
+
   public setData(data: any) {
     this.user = data['user'];
     this.posts = data['posts'];

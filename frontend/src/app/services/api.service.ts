@@ -76,11 +76,32 @@ export class ApiService {
     return this.http.post(this.baseUrl + 'acceptfriendrequest/', data);
   }  
 
-  public rejectFriendRequest(accepter: string, friend: string): Observable<any>  {
-    let data = {
-      'accepter': accepter,
-      'friend': friend
+  public rejectFriendRequest(rejector: string, friend: string, returnProfile: number = 0): Observable<any>  {
+    let data = { };
+    if (returnProfile == 0) {
+      data = {
+        'rejector': rejector,
+        'friend': friend,
+        'returnProfile': false
+      }
+    } else if (returnProfile == 1) {
+      data = {
+        'rejector': rejector,
+        'friend': friend,
+        'email': rejector,
+        'viewed': friend,
+        'returnProfile': true
+      }
+    } else {
+      data = {
+        'rejector': rejector,
+        'friend': friend,
+        'email': friend,
+        'viewed': rejector,
+        'returnProfile': true
+      }
     }
+    
     return this.http.post(this.baseUrl + 'rejectfriendrequest/', data);
   }
 

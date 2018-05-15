@@ -119,4 +119,12 @@ export class ApiService {
     }
     return this.http.post(this.baseUrl + 'getprofile/', data);
   }
+
+  public sendFriendRequest(senderEmail: string, receiverEmail: string): Observable<any> {
+    let data = {
+      'email': senderEmail,
+      'viewed': receiverEmail
+    }
+    return this.http.post(this.baseUrl + 'sendrequest/', data);
+  }
 }

@@ -209,3 +209,16 @@ def get_profile(request):
   }
   response = make_success_response(data)
   return HttpResponse(json.dumps(response))
+
+def send_friend_request(request):
+  data = extract_data(request)
+  user_email = data['email']
+  viewed_user_email = data['viewed']
+  user = User.objects.get(email=user_email)
+  viewed_user = User.objects.get(email=viewed_user_email)
+  friendship = Friendship()
+  friendship.user1 = user
+  friendship.user2 = viewed_user
+  friendship.status = 0
+  friendship.save()
+  return get_profile(request)

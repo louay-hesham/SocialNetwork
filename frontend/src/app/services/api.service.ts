@@ -159,4 +159,8 @@ export class ApiService {
     }
     return this.http.post(this.baseUrl + 'deletefriend/', data); 
   }
+
+  public deletePost(postID: number): Observable<any> {
+    return this.http.post(this.baseUrl + 'deletepost/', {'post_id': postID}); 
+  }
 }

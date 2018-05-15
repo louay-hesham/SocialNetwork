@@ -248,3 +248,18 @@ def delete_friend(request):
   }
   response = make_success_response(data)
   return HttpResponse(json.dumps(response))
+
+def delete_post(request):
+  data = extract_data(request)
+  post_id = data['post_id']
+  post = Post.objects.get(id=post_id)
+  poster = post.poster
+  post.delete()
+  posts = Post.objects.filter(poster=poster)
+  data = {
+    'userData': jsonify_user(poster),
+    'posts': jsonify_posts(posts),
+    'friendshipStatus': 'self'
+  }
+  response = make_success_response(data)
+  return HttpResponse(json.dumps(response))

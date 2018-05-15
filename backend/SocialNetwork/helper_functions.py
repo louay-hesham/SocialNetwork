@@ -95,7 +95,8 @@ def jsonify_post(post):
     'poster': jsonify_user(post.poster),
     'caption': post.caption,
     'time': str(post.publishtime),
-    'image': image
+    'image': image,
+    'id': post.id
   }
 
 def get_all_friends(user_email):

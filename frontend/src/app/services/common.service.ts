@@ -76,6 +76,7 @@ export class CommonService {
 
   public parsePost(postData: any): Post {
     let post = new Post();
+    post.id = postData['id']
     post.caption = postData['caption']
     post.image = postData['image']
     post.time = postData['time']

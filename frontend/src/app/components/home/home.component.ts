@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   private window: number = 0;
   private requestsCount: number = 0;
 
+  private profileComponent: ProfileComponent;
   private dataForProfile: any;
 
   constructor(private cookie: CookieService, private common: CommonService, private api: ApiService) { }
@@ -32,9 +33,13 @@ export class HomeComponent implements OnInit {
 
   private setWindow(n: number) {
     this.window = n;
+    if (n != 5) {
+      this.profileComponent = undefined;
+    }
   }
 
   private showProfile(user: User) {
+    this.dataForProfile = {};
     this.api.getProfileData(this.common.user.email, user.email).subscribe(
       response => {
         if (response['status'] == 'success') {
@@ -48,6 +53,9 @@ export class HomeComponent implements OnInit {
             'posts': posts
           }
           this.window = 5;
+          if (this.profileComponent != undefined) {
+            this.profileComponent.setData(this.dataForProfile);        
+          }
         }
       }
     )
@@ -55,5 +63,6 @@ export class HomeComponent implements OnInit {
 
   private profileComponentReady(profileComponent: ProfileComponent) {
     profileComponent.setData(this.dataForProfile);
+    this.profileComponent = profileComponent;
   }
 }

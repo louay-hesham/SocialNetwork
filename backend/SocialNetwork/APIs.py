@@ -172,7 +172,7 @@ def get_all_posts(request):
   by_friends = Post.objects.filter(poster__in=friends)
   non_friends = User.objects.all().exclude(email__in=friends).exclude(email=user.email)
   by_non_friends = Post.objects.filter(poster__in=non_friends, public=1)
-  posts = (by_user | by_friends | by_non_friends) 
+  posts = (by_user | by_friends | by_non_friends).order_by('-publishtime')
   posts_data = jsonify_posts(posts)
   response = make_success_response(posts_data)
   return HttpResponse(json.dumps(response))
@@ -180,7 +180,7 @@ def get_all_posts(request):
 def search_posts(request):
   data = extract_data(request)
   query = data['query']
-  posts = Post.objects.filter(caption__icontains = query)
+  posts = Post.objects.filter(caption__icontains = query).order_by('-publishtime')
   posts_data = jsonify_posts(posts)
   response = make_success_response(posts_data)
   return HttpResponse(json.dumps(response))
@@ -207,7 +207,7 @@ def get_profile(request):
     else:
       is_friends = True
       friendship_status = 'friends'
-  posts = Post.objects.filter(poster = viewed_user) if is_friends else Post.objects.filter(poster=viewed_user, public=1)
+  posts = Post.objects.filter(poster = viewed_user).order_by('-publishtime') if is_friends else Post.objects.filter(poster=viewed_user, public=1).order_by('-publishtime')
   data = {
     'userData': jsonify_user(viewed_user, is_friends),
     'posts': jsonify_posts(posts),
@@ -240,7 +240,7 @@ def delete_friend(request):
   f = (f1 | f2)
   friendship = f[0]
   friendship.delete()
-  posts = Post.objects.filter(poster=viewed_user, public=1)
+  posts = Post.objects.filter(poster=viewed_user, public=1).order_by('-publishtime')
   data = {
     'userData': jsonify_user(viewed_user, False),
     'posts': jsonify_posts(posts),
@@ -255,7 +255,7 @@ def delete_post(request):
   post = Post.objects.get(id=post_id)
   poster = post.poster
   post.delete()
-  posts = Post.objects.filter(poster=poster)
+  posts = Post.objects.filter(poster=poster).order_by('-publishtime')
   data = {
     'userData': jsonify_user(poster),
     'posts': jsonify_posts(posts),

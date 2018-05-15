@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonService } from '../../../services/common.service'
 import { ApiService } from '../../../services/api.service'
 import { User } from '../../../classes/user'
@@ -11,6 +11,9 @@ import { User } from '../../../classes/user'
 export class RequestsComponent implements OnInit {
 
   private requests: User[] = [];
+
+  @Output()
+  public userClicked: EventEmitter<User> = new EventEmitter<User>();
 
   constructor(private common: CommonService, private api: ApiService) { }
 
@@ -56,5 +59,9 @@ export class RequestsComponent implements OnInit {
         }
       }
     )
+  }
+
+  private viewProfile(user: User) {
+    this.userClicked.emit(user);
   }
 }

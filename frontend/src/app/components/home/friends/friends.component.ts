@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonService } from '../../../services/common.service'
 import { ApiService } from '../../../services/api.service'
 import { User } from '../../../classes/user'
@@ -12,6 +12,9 @@ export class FriendsComponent implements OnInit {
 
   private friends: User[] = [];
 
+  @Output()
+  public userClicked: EventEmitter<User> = new EventEmitter<User>();
+
   constructor(private common: CommonService, private api: ApiService) { }
 
   ngOnInit() {
@@ -24,6 +27,10 @@ export class FriendsComponent implements OnInit {
         }
       }
     )
+  }
+
+  private viewProfile(user: User) {
+    this.userClicked.emit(user);
   }
 
 }

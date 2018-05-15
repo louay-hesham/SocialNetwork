@@ -1,7 +1,7 @@
 <div *ngFor="let user of requests">
   <div class="row">
     <img [src]="user.getProfilePic()" class="img-thumbnail col-md-2" style="max-height: 60px; max-width: 60px;"/>
-    <h4 class="col-md-2">{{user.getDisplayName()}}</h4>
+    <h4 class="col-md-2 pointer" (click)="viewProfile(user)">{{user.getDisplayName()}}</h4>
     <h4 class="col-md-2">{{user.email}}</h4>
     <h4 class="col-md-2">{{user.hometown}}</h4>
     <h4 class="col-md-2">{{user.phone}}</h4>

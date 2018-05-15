@@ -50,7 +50,8 @@ export class HomeComponent implements OnInit {
           }
           this.dataForProfile = {
             'user': user,
-            'posts': posts
+            'posts': posts,
+            'friendshipStatus': response['data']['friendshipStatus']
           }
           this.window = 5;
           if (this.profileComponent != undefined) {

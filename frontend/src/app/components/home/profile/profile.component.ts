@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
 
   private user: User;
   private posts: Post[];
+  private friendshipStatus: string;
 
   @Output()
   public ready: EventEmitter<ProfileComponent> = new EventEmitter<ProfileComponent>();
@@ -26,6 +27,7 @@ export class ProfileComponent implements OnInit {
   public setData(data: any) {
     this.user = data['user'];
     this.posts = data['posts'];
+    this.friendshipStatus = data['friendshipStatus'];
   }
 
 }

@@ -39,6 +39,22 @@ export class ProfileComponent implements OnInit {
     )
   }
 
+  private acceptRequest() {
+    this.api.acceptFriendRequest(this.common.user.email, this.user.email, true).subscribe(
+      response => {
+        if (response['status'] == 'success') {
+          this.user = this.common.parseUser(response['data']['userData'])
+          this.posts = [];
+          for(let postData of response['data']['posts']) {
+            this.posts.push(this.common.parsePost(postData))
+          }
+          this.friendshipStatus = response['data']['friendshipStatus']
+          this.common.refreshRequestsCount();
+        }
+      }
+    )
+  }
+
   public setData(data: any) {
     this.user = data['user'];
     this.posts = data['posts'];

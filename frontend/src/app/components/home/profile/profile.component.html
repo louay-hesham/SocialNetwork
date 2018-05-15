@@ -11,7 +11,7 @@
           <button *ngIf="friendshipStatus == 'sent'" class="btn btn-danger">Delete Request</button>
           <button *ngIf="friendshipStatus == 'friends'" class="btn btn-danger">Delete From Friends</button>
           <div *ngIf="friendshipStatus == 'received'">
-            <button class="btn btn-success">Accept Request</button>
+            <button class="btn btn-success" (click)="acceptRequest()">Accept Request</button>
             <button class="btn btn-danger">Reject Request</button>
           </div>
         </div>

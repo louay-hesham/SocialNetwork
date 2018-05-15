@@ -65,10 +65,13 @@ export class ApiService {
     return this.http.post(this.baseUrl + 'getfriends/', data);
   }
 
-  public acceptFriendRequest(accepter: string, friend: string): Observable<any>  {
+  public acceptFriendRequest(accepter: string, friend: string, returnProfile: boolean = false): Observable<any>  {
     let data = {
       'accepter': accepter,
-      'friend': friend
+      'friend': friend,
+      'email': accepter,
+      'viewed': friend,
+      'returnProfile': returnProfile
     }
     return this.http.post(this.baseUrl + 'acceptfriendrequest/', data);
   }  

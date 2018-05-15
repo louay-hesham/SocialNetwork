@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonService } from '../../../services/common.service'
 import { ApiService } from '../../../services/api.service'
 import { User } from '../../../classes/user'
@@ -12,6 +12,9 @@ import { Post } from '../../../classes/post'
 export class NewsFeedComponent implements OnInit {
 
   private posts: Post[];
+
+  @Output()
+  public userClicked: EventEmitter<User> = new EventEmitter<User>();
 
   constructor(private common: CommonService, private api: ApiService) { }
 
@@ -32,6 +35,10 @@ export class NewsFeedComponent implements OnInit {
         }
       )
     }
+  }
+
+  private viewProfile(user: User) {
+    this.userClicked.emit(user);
   }
 
 }

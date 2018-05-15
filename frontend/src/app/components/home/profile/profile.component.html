@@ -1,0 +1,63 @@
+<div>
+  <table class="table">
+    <tr>
+      <td class="vert-aligned" align="center">
+        <img [src]="user.getProfilePic()" class="img-thumbnail" style="max-height: 100px; max-width: 100px;"/>
+      </td>
+      <td class="vert-aligned" width="50%" colspan="2">
+        <h2>{{user.getDisplayName()}}</h2>
+      </td>
+      <td class="vert-aligned">
+        Email: {{user.email}}
+      </td>
+    </tr>
+    <tr>
+      <td class="vert-aligned">
+        Phone Number: {{user.phone}}
+      </td>
+      <td class="vert-aligned">
+        Gender: {{user.getGenderText()}}
+      </td>
+      <td class="vert-aligned">
+        Hometown: {{user.hometown}}
+      </td>
+      <td class="vert-aligned">
+        Marital Status: {{user.getMaritalStatusText()}}
+      </td>
+    </tr>
+    <tr *ngIf="user.isAvailableForUser()">
+      <td>
+        Birthdate: {{user.birthdate}}
+      </td>
+      <td colspan="3">
+        About: {{user.aboutMe}}
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div *ngFor="let post of posts">
+  <table class="table">
+    <tr>
+      <td class="vert-aligned" align="center" rowspan="1">
+        <img [src]="post.poster.getProfilePic()" class="img-thumbnail" style="max-height: 60px; max-width: 60px;"/>
+      </td>
+      <td class="vert-aligned" width="70%">
+        <h4>{{post.poster.getDisplayName()}}</h4>
+      </td>
+      <td class="vert-aligned">
+        {{post.time}}
+      </td>
+    </tr>
+    <tr>
+      <td class="vert-aligned" colspan="3">
+        {{post.caption}}
+      </td>
+    </tr>
+    <tr>
+      <td class="vert-aligned" align="center" colspan="3">
+        <img [src]="post.getImage()" class="img-thumbnail" align="center" style="max-height: 500px; max-width: 500px;"/>
+      </td>
+    </tr>
+  </table>
+</div>

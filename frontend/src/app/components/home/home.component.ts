@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { ProfileComponent } from './profile/profile.component'
 import { CommonService } from '../../services/common.service'
 import { ApiService } from '../../services/api.service'
+import { User } from '../../classes/user'
 
 
 @Component({
@@ -13,6 +15,8 @@ export class HomeComponent implements OnInit {
 
   private window: number = 0;
   private requestsCount: number = 0;
+
+  private dataForProfile: any;
 
   constructor(private cookie: CookieService, private common: CommonService, private api: ApiService) { }
 
@@ -30,11 +34,26 @@ export class HomeComponent implements OnInit {
     this.window = n;
   }
 
-  private showProfile() {
-    this.api.getProfileData(this.common.user.email, this.common.user.email).subscribe(
+  private showProfile(user: User) {
+    this.api.getProfileData(this.common.user.email, user.email).subscribe(
       response => {
-        console.log(response)
+        if (response['status'] == 'success') {
+          let user = this.common.parseUser(response['data']['userData'])
+          let posts = [];
+          for(let postData of response['data']['posts']) {
+            posts.push(this.common.parsePost(postData))
+          }
+          this.dataForProfile = {
+            'user': user,
+            'posts': posts
+          }
+          this.window = 5;
+        }
       }
     )
+  }
+
+  private profileComponentReady(profileComponent: ProfileComponent) {
+    profileComponent.setData(this.dataForProfile);
   }
 }

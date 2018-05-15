@@ -199,7 +199,7 @@ def get_profile(request):
       is_friends = True
   posts = Post.objects.filter(poster = viewed_user) if is_friends else Post.objects.filter(poster=viewed_user, public=1)
   data = {
-    'userData': jsonify_user(viewed_user),
+    'userData': jsonify_user(viewed_user, is_friends),
     'posts': jsonify_posts(posts)
   }
   response = make_success_response(data)

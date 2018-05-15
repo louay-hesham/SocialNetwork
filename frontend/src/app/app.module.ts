@@ -19,6 +19,7 @@ import { FriendsComponent } from './components/home/friends/friends.component';
 import { SearchComponent } from './components/home/search/search.component';
 import { NewsFeedComponent } from './components/home/news-feed/news-feed.component';
 import { NewPostComponent } from './components/home/news-feed/new-post/new-post.component';
+import { ProfileComponent } from './components/home/profile/profile.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { NewPostComponent } from './components/home/news-feed/new-post/new-post.
     FriendsComponent,
     SearchComponent,
     NewsFeedComponent,
-    NewPostComponent
+    NewPostComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@ export class User {
   public phone: string = '';
   public email: string;
   public gender: boolean;
-  public birthdate: Date;
+  public birthdate: string;
   public profilePic: any;
   public hometown: string = '';
   public maritalStatus: number = -1;
@@ -58,11 +58,11 @@ export class User {
   }
 
   public getDisplayName(): string {
-    if (this.nickname == undefined || this.nickname == '') {
-      return this.firstName + ' ' + this.lastName;
-    } else {
-      return this.nickname;
+    let displayName = this.firstName + ' ' + this.lastName;
+    if (this.nickname != undefined && this.nickname != '') {
+      displayName = displayName + ' (' + this.nickname + ')'; 
     }
+    return displayName;
   }
 
   public getProfilePic(): string {
@@ -73,5 +73,22 @@ export class User {
     } else {
       return '/assets/female.jpg';
     }
+  }
+
+  public getGenderText(): string {
+    if (this.gender) return 'Male';
+    else return 'Female';
+  }
+
+  public getMaritalStatusText(): string {
+    if (this.maritalStatus == 0) return 'Single';
+    else if (this.maritalStatus == 1) return 'Engaged';
+    else if (this.maritalStatus == 2) return 'Married';
+    else return '';
+  }
+
+  public isAvailableForUser() : boolean {
+    if (this.birthdate == undefined || this.birthdate == null) return false;
+    else return true;
   }
 }

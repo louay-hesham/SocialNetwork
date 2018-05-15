@@ -47,7 +47,7 @@ export class CommonService {
     user.nickname = userData['nickname'];
     user.phone = userData['phone'];
     user.gender = userData['gender'];
-    user.birthdate = userData['birthdate'];
+    user.birthdate = new Date(userData['birthdate']).toDateString()
     user.profilePic = userData['profilepic'];
     user.hometown = userData['hometown'];
     user.maritalStatus = userData['maritalstatus'];

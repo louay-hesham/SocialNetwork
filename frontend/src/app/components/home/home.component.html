@@ -1,7 +1,9 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark row">
   <div class="col-md-5">
     <img [src]="common.user.getProfilePic()" class="img-thumbnail" style="max-height: 60px; max-width: 60px;"/>
-    <a class="navbar-brand text-light pointer" (click)="showProfile()">Logged in as {{common.user.getDisplayName()}}</a>
+    <a class="navbar-brand text-light pointer" (click)="showProfile(common.user)">
+      Logged in as {{common.user.getDisplayName()}}
+    </a>
   </div>
   <button class="btn btn-success col-md-1 margin-padding" (click)="setWindow(0)">Home</button>
   <button class="btn btn-primary col-md-1 margin-padding" (click)="setWindow(1)">Edit Profile</button>
@@ -16,3 +18,4 @@
 <app-friends *ngIf="window == 2"></app-friends>
 <app-requests *ngIf="window == 3"></app-requests>
 <app-search *ngIf="window == 4"></app-search>
+<app-profile *ngIf="window == 5" (ready)="profileComponentReady($event)"></app-profile>

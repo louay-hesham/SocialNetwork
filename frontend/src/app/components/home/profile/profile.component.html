@@ -6,7 +6,15 @@
       </td>
       <td class="vert-aligned" width="50%" colspan="2">
         <h2>{{user.getDisplayName()}}</h2>
-        {{friendshipStatus}}
+        <div *ngIf="friendshipStatus != 'self'">
+          <button *ngIf="friendshipStatus == 'nothing'" class="btn btn-primary">Add Friend</button>
+          <button *ngIf="friendshipStatus == 'sent'" class="btn btn-danger">Delete Request</button>
+          <button *ngIf="friendshipStatus == 'friends'" class="btn btn-danger">Delete From Friends</button>
+          <div *ngIf="friendshipStatus == 'received'">
+            <button class="btn btn-success">Accept Request</button>
+            <button class="btn btn-danger">Reject Request</button>
+          </div>
+        </div>
       </td>
       <td class="vert-aligned">
         Email: {{user.email}}
